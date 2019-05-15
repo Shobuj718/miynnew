@@ -23,6 +23,7 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get('/varifyEmail/{id}', 'Auth\RegisterController@varifyEmail')->name('varifyEmail');
 
+
 Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
 Route::get('/home', 'HomeController@index')->name('home');
