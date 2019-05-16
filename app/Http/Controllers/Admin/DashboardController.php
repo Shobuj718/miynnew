@@ -14,11 +14,34 @@ class DashboardController extends Controller
 
     public function index()
     {
-    	return view('admin.pages.dashboard');
+
+        $user_type = 'user';
+      
+        return view('admin.pages.dashboard');
+        //return view('admin.onboarding.index', compact('user_type'));
+
     }
 
-    public function getDashboard()
-    {
-    	return view('admin.dashboard');
+    public function onboardingDashboard(){
+
+        return view('admin.onboarding.onboard_dash');
+
     }
+    
+    public function onboardingmodal(){
+      
+        return view('admin.onboarding.showModal');
+    }
+
+    public function staffAdd(Request $request)
+    {
+    	$response = [
+    		'success' => 'ok',
+    		'message' => "Business profile created",
+    		'input' => $request->all()
+            
+    	];
+    	return response()->json($response);
+    }
+
 }

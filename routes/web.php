@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/onboarding', function () {
+    return view('admin.onboarding.index');
+});
 
 Auth::routes(['verify' => true]);
 
@@ -23,7 +26,13 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get('/varifyEmail/{id}', 'Auth\RegisterController@varifyEmail')->name('varifyEmail');
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
+Route::post('/staff', 'Admin\DashboardController@staffAdd')->name('staff.add');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/business', 'Admin\BusinessProfileController@business');
+
+Route::get('/dashboard/onboarding', 'Admin\DashboardController@onboardingDashboard');
+Route::get('/dashboard/modal', 'Admin\DashboardController@onboardingmodal');

@@ -34,6 +34,14 @@
     <link rel="stylesheet" href="{{ asset('/files/assets/pages/chart/radial/css/radial.css') }}" type="text/css" media="all">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/files/assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/files/assets/css/jquery.mCustomScrollbar.css') }}">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+
+    <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+    
     @yield('styles')
 </head>
 
@@ -224,18 +232,7 @@
                     </nav>
                     <div class="pcoded-content">
                         <!-- Page-header start -->
-                        <div class="page-header">
-                            <div class="page-block">
-                                <div class="row align-items-center">
-                                    <div class="col-md-8">
-                                        <div class="page-header-title">
-                                            <h5 class="m-b-10">@yield('heading-title')</h5>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        
                         <!-- Page-header end -->
                         <div class="pcoded-inner-content">
                             <!-- Main-body start -->
@@ -288,6 +285,7 @@
     <!-- custom js -->
     <script type="text/javascript" src="{{ asset('/files/assets/pages/dashboard/custom-dashboard.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/files/assets/js/script.js')}}"></script>
+
     @yield('scripts')
 </body>
 

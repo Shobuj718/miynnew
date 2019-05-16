@@ -25,6 +25,11 @@ class LoginController extends Controller
         return view('admin.auth.login');
     }
 
+    public function reset()
+    {
+        return view('admin.auth.passwords.reset');
+    }
+
     /**
      * Where to redirect users after login.
      *

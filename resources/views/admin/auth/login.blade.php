@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Mega Able bootstrap admin template by Phoenixcoded</title>
+    <title>MIYN-Login</title>
    
       <!-- Meta -->
       <meta charset="utf-8">
