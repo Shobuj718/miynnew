@@ -231,7 +231,7 @@ function submitContactForm(){
     alert(staff_name);
 
     if(staff_name.trim() == '' ){
-        alert('Please enter your phone_number.');
+        alert('Please enter your staff name.');
         $('#staff_name').focus();
          $('.staff_name_error').html('<span style="color:red;">Please enter staff name</p>');
         return false;
@@ -270,7 +270,9 @@ function submitContactForm(){
 </script>
 <script src="{{asset('/multistep_form/assets/js/jquery-1.11.1.min.js')}}"></script>
 <script src="{{asset('/multistep_form/js/jquery.backstretch.min.js')}}"></script>
-<script src="http://localhost/bootstrap-multi-step-registration/assets/js/retina-1.1.0.min.js"></script>
+<script src="{{asset('/multistep_form/js/retina-1.1.0.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('/multistep_form/files/bower_components/modernizr/js/css-scrollbars.js')}}"></script>
+
 
 <script type="text/javascript">
         

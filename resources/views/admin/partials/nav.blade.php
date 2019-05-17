@@ -14,8 +14,8 @@
                 </div>
             </div>
         </div>
-        <a href="{{ route('dashboard') }}">
-            <img class="img-fluid" src="{{ asset('/files/assets/images/logo.png') }}" alt="Theme-Logo" />
+        <a href="{{ route('dashboard') }}" style="display: inline-block;float: none; width: 157px;height: 58px;">
+            <img class="" src="{{ asset('/files/assets/images/miynlogo_dash_up.png') }}" style="display: inline-block;float: none; width: 75px;height: 58px;" alt="Theme-Logo" />
             <!-- <img class="img-fluid" src="{{ asset('/files/assets/images/logo.png') }}" alt="Theme-Logo" /> -->
         </a>
         <a class="mobile-options waves-effect waves-light">

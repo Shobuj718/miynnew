@@ -42,6 +42,9 @@
         <!-- Latest compiled and minified CSS -->
 
     <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+
+     <link rel="stylesheet" type="text/css" href="{{ asset('/files/assets/css/jquery.mCustomScrollbar.css') }}">
+
     
     @yield('styles')
 </head>
@@ -250,6 +253,7 @@
         </div>
     </div>
     
+    <script type="text/javascript" src="{{asset('/multistep_form/files/bower_components/modernizr/js/css-scrollbars.js')}}"></script>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="{{ asset('/files/bower_components/jquery/js/jquery.min.js')}}"></script>

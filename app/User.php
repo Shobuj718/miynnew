@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\MailResetPasswordToken;
+use App\Models\BusinessProfile;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -44,6 +45,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new MailResetPasswordToken($token));
+    }
+
+    public function business_profile(){
+        return $this->hasOne(BusinessProfile::class);
     }
 
 }

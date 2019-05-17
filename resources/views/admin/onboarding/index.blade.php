@@ -13,21 +13,38 @@
                 </div>
                 <hr>
             <!-- New ticket button card start -->
-            <div class="card">
-                <div class="card-block">
-                	<div class="issue-list-progress">
-                        <h6>You have completed 20%, keep on going!</h6>
-                        <div class="issue-progress">
-                            <div class="progress">
-                                <span class="issue-text1 txt-primary"></span>
-                                <div class="issue-bar1 bg-primary"></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- Color Progressbar card start -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Get Started by completing the following steps!</h5>
                             </div>
-                            <!-- end of progress -->
+                            <div class="card-block">
+                                <div class="row">
+                                    
+                                    <div class="col-md-12">
+                                        <div class="progress">
+
+                                            <?php if($business_profile_status == 1){
+                                               $progressbar = 0;
+                                               $progressbar += 20;
+                                            }
+                                            if($staff_status == 1){
+                                                $progressbar += 20;
+                                            }
+                                            ?>
+
+                                            <div class="progress-bar progress-bar-striped progress-bar-success" role="progressbar" style='width:<?php echo "$progressbar"; ?>%' aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <!-- end of issue progress -->
+                        <!-- Color Progressbar card end -->
                     </div>
                 </div>
-            </div>
 
             <!-- bug list card start -->
             <div class="card">
@@ -36,11 +53,25 @@
                     <p>Tell us more about your business so we can make the setup process quicker and customized for your needs. </p>
 
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="complete_business_info" name="complete_business_info">
+
+                      <input type="radio" class="custom-control-input"  id="complete_business_info" 
+                      <?php if($business_profile_status == 1){
+                         echo 'checked';
+                      }else{
+                        echo '';
+                      }
+                      ?> name="complete_business_info">
+
                       <label class="custom-control-label" for="complete_business_info">Complete your business info</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" data-toggle="modal" data-target="#staff_modal" class="custom-control-input" id="set_staff_member" name="set_staff_member">
+                      <input type="radio" data-toggle="modal" data-target="#staff_modal" class="custom-control-input" 
+                      <?php if($staff_status == 1){
+                         echo 'checked';
+                      }else{
+                        echo '';
+                      } ?>
+                      id="set_staff_member" name="set_staff_member">
                       <label class="custom-control-label" for="set_staff_member">Add your staff members</label>
                     </div>
 

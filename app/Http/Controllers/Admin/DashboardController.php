@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\BusinessProfile;
 use App\Models\Staff;
+use App\User;
 
 
 class DashboardController extends Controller
@@ -38,7 +39,24 @@ class DashboardController extends Controller
 
     public function onboardingDashboard(){
 
-        return view('admin.onboarding.index');
+        $user = Auth::user();
+        $user_auth_id = $user->id;
+
+        $business_data = BusinessProfile::where('user_id', $user_auth_id)->first();
+        $staff_data = Staff::where('user_id', $user_auth_id)->first();
+        
+        $business_profile_status = $business_data->status;
+        
+        //dd($staff_data);
+       // dd($business_profile_status);
+
+        if($staff_data === null){
+            $staff_status =  0;
+        }else{
+            $staff_status = 1;
+        }
+
+        return view('admin.onboarding.index', compact('business_profile_status', 'staff_status'));
 
     }
     
