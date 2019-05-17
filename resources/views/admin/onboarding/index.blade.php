@@ -156,7 +156,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-check form-check-inline">
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="radio" name="send_email_with_inst" id="send_email_with_inst" value="option1"> Send email invitation with set password instruction
+                                                <input class="form-check-input" type="radio" name="send_email_with_inst" id="send_email_with_inst" value="1"> Send email invitation with set password instruction
                                             </label>
                                         </div>
                                         
@@ -201,11 +201,13 @@ function submitContactForm(){
 
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-	var staff_name = $('#staff_name').val();
-	var staff_email = $('#staff_email').val();
-	var manage_client_records = $('#manage_client_records:checked').val();
+	var staff_name            = $('#staff_name').val();
+	var staff_email           = $('#staff_email').val();
+    var staff_role            = $('#staff_role').val();
+    var staff_provide_service = $('#staff_provide_service').val();
+	var send_email_with_inst  = $('#send_email_with_inst:checked').val();
 
-	alert(staff_name);
+	alert(send_email_with_inst);
 
 	if(staff_name.trim() == '' ){
         alert('Please enter your phone_number.');
@@ -223,24 +225,28 @@ function submitContactForm(){
     }
 
 	else{
-		//alert('hhhh');
+		alert('hhhh');
 		
 		$.ajax({
                 type:'POST',
                 url:'{{url("/staff")}}',
-                data:{_token:CSRF_TOKEN, staff_name:staff_name },
+                data:{_token:CSRF_TOKEN, staff_name:staff_name, staff_email, staff_role, staff_provide_service, send_email_with_inst  },
                 dataType:'json',
                 success:function(data){
                     console.log(data.success);
                     console.log(data.message);
+                    console.log(data.value);
                     if(data.success == 'ok'){
-                        //$('staff_modal').modal('hide');
-                        console.log('okee');
+                        $('#staff_modal').modal('hide');
+                        console.log('ok, success');
                     }else{
-                        console.log('okee');
+                        console.log('error return');
                     }
                    
-                }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                } 
             });
         }
 	}

@@ -437,7 +437,7 @@
 </div>
 
 <?php
-    if( $user_type == 'user' && 1===1){
+    if( 1===1){
         echo '<script type="text/javascript">
             $(document).ready(function(){
                 $("#loginModal").modal("show");

@@ -1,162 +1,88 @@
-<head>
-    <title></title>
+<button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#onboard_modal">Onboard Modal</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-
-    <div class="container">
-
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
-            modal test
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="border-bottom: 0px;">
-                        <h4 class="modal-title text-center" id="myModalLabel">Your business profile</h4>
-                        <p class="text-center">Hi Shobuj BD, Get Started by telling us about your business</p>
-                        <br>
+    <div class="modal fade" id="onboard_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">New Staff Account</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Basic Inputs Validation start -->
+                    <div class="card">
+                        <div class="card-block">
+                            <form id="msform">
+                                    <!-- progressbar -->
+                                <!-- <ul id="progressbar">
+                                    <li class="active">Account Setup</li>
+                                    <li>Social Profiles</li>
+                                    <li>Personal Details</li>
+                                </ul> -->
+                                <!-- fieldsets -->
+                                <fieldset>
+                                    <img class="logo" src="{{asset('/files/assets/images/miynlogo.png')}}" alt="logo.png">
+                                    <h2 class="fs-title">Sign up</h2>
+                                    <h3 class="fs-subtitle">Let’s have a new beginning. Sign up for new you</h3>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="username" placeholder="Username" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="email" placeholder="Email" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="pass" placeholder="Password" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="cpass" placeholder="Confirm Password" />
+                                    </div>
+                                    <button type="button" name="next" class="btn btn-primary next" value="Next">Next</button>
+                                </fieldset>
+                                <fieldset class="">
+                                    <img class="logo" src="../files/assets/images/logo-blue.png" alt="logo.png">
+                                    <h2 class="fs-title">Social Profiles</h2>
+                                    <h3 class="fs-subtitle">Little bit about your presence on social media</h3>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="twitter" placeholder="Twitter" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="facebook" placeholder="Facebook" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="gplus" placeholder="Google Plus" />
+                                    </div>
+                                    <button type="button" name="previous" class="btn btn-inverse btn-outline-inverse previous" value="Previous">Previous</button>
+                                    <button type="button" name="next" class="btn btn-primary next" value="Next">Next</button>
+                                </fieldset>
+                                <fieldset>
+                                    <img class="logo" src="../files/assets/images/logo-blue.png" alt="logo.png">
+                                    <h2 class="fs-title">Personal Details</h2>
+                                    <h3 class="fs-subtitle">And something about yourself!</h3>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="fname" placeholder="First Name" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="lname" placeholder="Last Name" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="phone" placeholder="Phone" />
+                                    </div>
+                                    <div class="input-group">
+                                        <textarea name="address" class="form-control" placeholder="Address"></textarea>
+                                    </div>
+                                    <button type="button" name="previous" class="btn btn-inverse btn-outline-inverse previous" value="Previous">Previous</button>
+                                    <button type="button" name="next" class="btn btn-primary" value="submit">Submit</button>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
-
-                    <div class="modal-body">
-                        <p class="statusMsg"></p>
-                        <form role="form">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user pull-right"></span></a>
-                                    </div>
-                                </div>                      
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        
-                                        <select name="industry" id="industry" class="col-sm-10 form-control">
-                                            <option value="industry1">industry1</option>
-                                            <option value="industry2">industry2</option>
-                                            <option value="industry3">industry3</option>
-                                        </select>
-                                    </div>
-                                    <p class="error_industry"></p>
-                                </div>
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user pull-right"></span></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <select name="profession" id="profession" class="col-sm-10 form-control">
-                                            <option value="profession1">Profession1</option>
-                                            <option value="profession2">Profession2</option>
-                                            <option value="profession3">Profession3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user pull-right"></span></a>
-                                    </div>
-                                </div>                          
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <select name="country" id="country" class="col-sm-10 form-control">
-                                            <option value="country1">Country1</option>
-                                            <option value="country2">Country2</option>
-                                            <option value="country3">Country3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="phone_number" id="phone_number" class="form-control" placeholder="phone">
-                                        <p class="error_phone_number"></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user pull-right"></span></a>
-                                    </div>
-                                </div>                      
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <select name="person" id="person" class="col-sm-10 form-control">
-                                            <option value="1">1 Person</option>
-                                            <option value="2">2 Person</option>
-                                            <option value="3">3 Person</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="web_url" id="web_url" class="form-control" placeholder="Website URL">
-                                        <p class="error_web_url"></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user pull-right"></span></a>
-                                    </div>
-                                </div>  
-                                <div class="col-sm-11">
-                                    <div class="form-group">
-                                        <input type="text" name="address" id="address" required="" class="form-control" placeholder="Address">
-                                        <p class="error_address"></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">                           
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="checkbox" id="show_number_address" value="TRUE">Present my phone number & address to my clients</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-
-                        </form>
-                    </div>
-
-                    <div class="modal-footer" style="border-top: 0px;text-align: center;">
-                        <button type="button" class="btn btn-success submitBtn" onclick="submitContactForm()" id="modal1">I'm all set</button>
-                       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                    </div>
+                    <!-- Basic Inputs Validation end -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+                    <button type="button" onclick="submitContactForm()" class="btn btn-primary waves-effect waves-light ">Save changes</button>
                 </div>
             </div>
         </div>
-
-</body>
-</html>
-
+    </div>

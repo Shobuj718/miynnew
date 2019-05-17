@@ -14,8 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/onboarding', function () {
-    return view('admin.onboarding.index');
+Route::get('/dashboard/onboardings', function () {
+    return view('admin.onboarding.onboard_test');
 });
 
 Auth::routes(['verify' => true]);
@@ -32,7 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
 Route::post('/staff', 'Admin\DashboardController@staffAdd')->name('staff.add');
 
+Route::get('/dashboard/onboarding', 'Admin\DashboardController@onboardingDashboard');
 Route::post('/business', 'Admin\BusinessProfileController@business');
 
-Route::get('/dashboard/onboarding', 'Admin\DashboardController@onboardingDashboard');
 Route::get('/dashboard/modal', 'Admin\DashboardController@onboardingmodal');

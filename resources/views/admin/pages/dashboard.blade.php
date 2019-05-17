@@ -1,3 +1,11 @@
+<?php
+    //if( $user_type == 'user' && 1===1){
+    if($businessId !== 1){
+      
+    echo "<script>window.location = '/dashboard/onboardings'</script>";
+    }
+?>
+
 @extends('admin.master')
 
 @section('main_content')

@@ -11,7 +11,7 @@ class BusinessProfileController extends Controller
     public function business(Request $request)
     {        
 
-		/*$business = new BusinessProfile;
+		$business = new BusinessProfile;
 
     	$slug    = md5(uniqid(time()));
 
@@ -80,7 +80,7 @@ class BusinessProfileController extends Controller
         
 
     	$business->status = 1;
-    	$business->save();*/
+    	$business->save();
 
         /*$str = $business->country_with_code;
         $ext = substr( strrchr($str, ' '), 1);*/
