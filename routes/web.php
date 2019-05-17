@@ -14,11 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard/onboardings', function () {
-    return view('admin.onboarding.onboard_test');
-});
+
 
 Auth::routes(['verify' => true]);
+
+/*======================================================================
+	Register and login all route
+========================================================================*/
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
@@ -28,7 +30,15 @@ Route::get('/varifyEmail/{id}', 'Auth\RegisterController@varifyEmail')->name('va
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+/*======================================================================
+	Onboarding all route
+========================================================================*/
+Route::get('/dashboard/onboardings', function () {
+    return view('admin.onboarding.onboard_test');
+});
+Route::get('/dashboard/check', function () {
+    return view('admin.onboarding.onboard_form');
+});
 Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
 Route::post('/staff', 'Admin\DashboardController@staffAdd')->name('staff.add');
 

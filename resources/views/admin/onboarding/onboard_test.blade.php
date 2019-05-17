@@ -278,6 +278,17 @@ function submitContactForm(){
         
 jQuery(document).ready(function() {
     
+    /*$(".open1").click(function() {
+      var phone_number = $("#phone_number").val();
+      if(phone_number.trim() == '' ){
+        //alert('Please enter your phone_number.');
+        $('#phone_number').focus();
+         $('.phone_number_error').html('<span style="color:red;">Please enter phone_number</p>');
+        return false;
+
+    }  
+      
+    });*/
     /*
         Fullscreen background
     */
@@ -303,16 +314,51 @@ jQuery(document).ready(function() {
     $('.registration-form .btn-next').on('click', function() {
         var parent_fieldset = $(this).parents('fieldset');
         var next_step = true;
+
+        var phone_number = $("#phone_number").val();
         
-        parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
-            if( $(this).val() == "" ) {
-                $(this).addClass('input-error');
+        if(!$.isNumeric(phone_number)){
+            //alert('Please enter your phone_number.');
+            $('#phone_number').focus();
+             $('.phone_number_error').html('<span style="color:red;">Please enter phone number</p>');
+            next_step = false;
+        }
+        /*if ( phone_number.length < 6 ){
+            //alert('Please enter your phone_number.');
+            $('#phone_number').focus();
+             $('.phone_number_error').html('<span style="color:red;">Please enter minimum six number.</p>');
+            next_step = false;
+        }*/
+        
+        if( next_step ) {
+            parent_fieldset.fadeOut(400, function() {
+                $(this).next().fadeIn();
+            });
+        }
+        
+    }); 
+    // next step
+    $('.registration-form .btn-next2').on('click', function() {
+        var parent_fieldset = $(this).parents('fieldset');
+        var next_step = true;
+
+        var check_value = $('input[type="checkbox"]:checked').length;
+        console.log(check_value); 
+
+        if(check_value > 0){
+          alert(check_value);
+          next_step = true;
+        } 
+        else{
+            alert("error not any checked options");
+            next_step = false;
+        }
+            /*if ( phone_number.length < 6 ){
+                //alert('Please enter your phone_number.');
+                $('#phone_number').focus();
+                 $('.phone_number_error').html('<span style="color:red;">Please enter minimum six number.</p>');
                 next_step = false;
-            }
-            else {
-                $(this).removeClass('input-error');
-            }
-        });
+            }*/
         
         if( next_step ) {
             parent_fieldset.fadeOut(400, function() {

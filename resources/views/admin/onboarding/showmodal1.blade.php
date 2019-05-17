@@ -10,7 +10,7 @@
                     </button>
                 </div> -->
                 <div class="modal-body">
-                    <form role="form"  class="registration-form">                                                    
+                    <form role="form" id="registration-form"  class="registration-form">                                                    
                         <fieldset>
                             <div class="form-top">
                                 <div class="form-top-left text-center">
@@ -55,7 +55,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="sr-only" for="form-last-name">Phone Number</label>
-                                            <input type="text" name="form-last-name" placeholder="Phone Number..." class="form-last-name form-control" id="form-last-name">
+                                            <input type="text" name="phone_number" placeholder="Phone Number..." class="form-last-name form-control" id="phone_number">
+                                            <span class="phone_number_error"></span>
                                             <input name="csrfToken" value="5965f0d244b7d32b334eff840werjhsdfas" type="hidden">
                                         </div>
                                     </div>
@@ -90,7 +91,7 @@
                                 </div>
 
                                 <div class="text-right">                                    
-                                    <button type="button" class="btn btn-next"  >Next</button>
+                                    <button type="button" class="btn btn-next open1"  >Next</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -176,7 +177,7 @@
                                    </div>
                                 <div class="text-right">
                                     <button type="button" class="btn btn-previous">Previous</button>
-                                    <button type="button" class="btn btn-next">Next</button>
+                                    <button type="button" class="btn btn-next2 open2">Next</button>
                                 </div>
                             </div>
                         </fieldset>
