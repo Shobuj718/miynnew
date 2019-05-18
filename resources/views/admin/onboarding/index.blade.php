@@ -1,6 +1,10 @@
 
 @extends('admin.master')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('/files/assets/pages/multi-step-sign-up/css/style.css')}}">
+@endsection
+
 @section('main_content')
 <div class="page-body">
     <div class="row">
@@ -85,7 +89,7 @@
                     <p>MIYN help you stay on top of your game, whether your are home or on the go. Organize your schedule, keep team members in the know and accept booking 24/7. </p>
 
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="set_service_online_schedule" name="set_service_online_schedule">
+                      <input type="radio" data-toggle="modal" data-target="#service_modal" class="custom-control-input" id="set_service_online_schedule" name="set_service_online_schedule">
                       <label class="custom-control-label" for="set_service_online_schedule">Set up your service menu and your online schedular</label>
                     </div>
                     <div class="custom-control custom-radio">
@@ -124,11 +128,6 @@
 </div>
 <!-- Page body end -->
 
-
-                
-    
-    <!-- Modal large-->
-    <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#staff_modal">Website widget</button>
 
     <div class="modal fade" id="staff_modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
@@ -216,13 +215,14 @@
     </div>
 
                 
-           
+    @include('admin.onboarding.service_modal_form')       
 
 
 
 @endsection
 
 @section('scripts')
+<script src="{{ asset('/files/assets/pages/multi-step-sign-up/js/main.js')}}"></script>
 
 <script>
 

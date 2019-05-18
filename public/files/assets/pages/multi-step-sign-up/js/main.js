@@ -1,3 +1,55 @@
+/* services duration */
+$(document).ready(function(){
+    var maxField2 = 5; //Input fields increment limitation
+    var addButton2 = $('.add_button2'); //Add button selector
+    var wrapper2 = $('.field_wrapper2'); //Input field wrapper
+    var fieldHTML2 = '<div class="row"><div class="col-md-4"><div class="form-group"><input type="text" name="service_name[]" id="service_name[]" class="form-control" placeholder="Service name"></div></div><div class="col-md-4"><div class="form-group"><select class="form-control" name="service_duration[]" id="service_duration"><option value="">Duration</option><option value="user">15 minutes</option><option value="user">30 minutes</option><option value="user">45 minutes</option><option value="user">1 hour</option></select></div></div><div class="col-md-3"><div class="form-group"><input type="text" name="service_price[]"  class="form-control" placeholder="Service price"></div></div><a href="javascript:void(0);" class="remove_button2 text-danger">Remove</a></div>'; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton2).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField2){
+            x++; //Increment field counter
+            $(wrapper2).append(fieldHTML2); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper2).on('click', '.remove_button2', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+
+
+/* services staff name */
+$(document).ready(function(){
+    var maxField = 5; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = '<div class="row"><div class="col-md-5"><div class="form-group"><input type="text" name="onboard_staff_name[]" class="form-control" placeholder="Staff name"></div></div><div class="col-md-5"><div class="form-group"><input type="text" name="onboard_staff_email[]" class="form-control" placeholder="Staff email"></div></div><a href="javascript:void(0);" class="remove_button text-danger">Remove</a></div>'; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+
+/* services hour*/
 
 //jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets
@@ -78,5 +130,9 @@ $(".previous").on('click',function(){
 });
 
 $(".submit").on('click',function(){
+	var v = $('#service_name').val();
+	alert('hioi');
+	console.log(v);
+	
 	return false;
 })
