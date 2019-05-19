@@ -3,7 +3,7 @@ $(document).ready(function(){
     var maxField2 = 5; //Input fields increment limitation
     var addButton2 = $('.add_button2'); //Add button selector
     var wrapper2 = $('.field_wrapper2'); //Input field wrapper
-    var fieldHTML2 = '<div class="row"><div class="col-md-4"><div class="form-group"><input type="text" name="service_name[]" id="service_name[]" class="form-control" placeholder="Service name"></div></div><div class="col-md-4"><div class="form-group"><select class="form-control" name="service_duration[]" id="service_duration"><option value="">Duration</option><option value="user">15 minutes</option><option value="user">30 minutes</option><option value="user">45 minutes</option><option value="user">1 hour</option></select></div></div><div class="col-md-3"><div class="form-group"><input type="text" name="service_price[]"  class="form-control" placeholder="Service price"></div></div><a href="javascript:void(0);" class="remove_button2 text-danger">Remove</a></div>'; //New input field html 
+    var fieldHTML2 = '<div class="row"><div class="col-md-4"><div class="form-group"><input type="text" name="service_name[]" id="service_name[]" class="form-control" placeholder="Service name"></div></div><div class="col-md-4"><div class="form-group"><select class="form-control service_duration" name="service_duration[]" id="service_duration"><option value="">Duration</option><option value="15 minutes">15 minutes</option><option value="30 minutes">30 minutes</option><option value="45 minutes">45 minutes</option><option value="1 hour">1 hour</option></select></div></div><div class="col-md-3"><div class="form-group"><input type="text" name="service_price[]" id="service_price[]" class="form-control" placeholder="Service price"></div></div><a href="javascript:void(0);" class="remove_button2 text-danger">Remove</a></div>'; //New input field html 
     var x = 1; //Initial field counter is 1
     
     //Once add button is clicked
@@ -129,10 +129,95 @@ $(".previous").on('click',function(){
 	});
 });
 
-$(".submit").on('click',function(){
-	var v = $('#service_name').val();
-	alert('hioi');
-	console.log(v);
+//$(".submit").on('click',function(){
+function submitServiceValue(){
+	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+	var sun_business_hours_am = $('#sun_business_hours_am').val();
+	var sun_business_hours_pm = $('#sun_business_hours_pm').val();
+
+	/*var n = $("input[name^= 'onboard_staff_name']").length;
+	var array = $("input[name^='onboard_staff_name']");*/
+	/*for(i=0; i < n; i++) {
+
+	   card_value = array.eq(i).val(); 
+	   //  it'd be .eq(i).val(); (if you wanted the text value)
+	   alert(card_value);
+	}*/
+	/*var n = $("input[name^= 'onboard_staff_email']").length;
+	var array = $("input[name^='onboard_staff_email']");
+
+	for(i=0; i < n; i++) {
+
+	   card_value = array.eq(i).val(); 
+	   //  it'd be .eq(i).val(); (if you wanted the text value)
+	   alert(card_value);
+	}*/
+	var onboard_staff_name = [];
+	$("input[name^='onboard_staff_name']").each(function() {
+	    console.log($(this).val());
+	    onboard_staff_name.push($(this).val());
+	});
+	//onboard_staff_name= JSON.stringify(onboard_staff_name);
+
+	var onboard_staff_email = [];
+	$("input[name^='onboard_staff_email']").each(function() {
+	    console.log($(this).val());
+	    onboard_staff_email.push($(this).val());
+	});
+	//onboard_staff_email= JSON.stringify(onboard_staff_email);
+
+	var service_name = [];
+	$("input[name^='service_name']").each(function() {
+	    console.log($(this).val());
+	    service_name.push($(this).val());
+	});
+	//service_name= JSON.stringify(service_name);
+
+	/*var service_duration = [];
+	$("#service_duration :selected").each(function() {
+	    console.log($(this).val());
+	    service_duration.push($(this).val());
+	});
+	service_duration= JSON.stringify(service_duration);*/
+
+	var service_duration = [];
+    $.each($(".service_duration option:selected"), function(){   
+    	console.log($(this).val());     
+        service_duration.push($(this).val());
+    });
+
+	var service_price = [];
+	$("input[name^='service_price']").each(function() {
+	    console.log($(this).val());
+	    service_price.push($(this).val());
+	});
+	//service_price= JSON.stringify(service_price);
+
+	alert('sss');
+	//var formData = $("input[name^='onboard_staff_email']").serialize();
+	
+
+	$.ajax({
+            type:'POST',
+            url:'/serviceOnboard',
+            data: {_token:CSRF_TOKEN, sun_business_hours_am:sun_business_hours_am, onboard_staff_name:onboard_staff_name, onboard_staff_email:onboard_staff_email, service_name:service_name, service_duration:service_duration, service_price:service_price },
+            dataType:'json',
+            success:function(data){
+                console.log(data.success);
+                console.log(data.message);
+                console.log(data.value);
+                if(data.success == 'ok'){
+                    console.log('ok, success');
+                }else{
+                    console.log('error return');
+                }
+               
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            } 
+        });
 	
 	return false;
-})
+}

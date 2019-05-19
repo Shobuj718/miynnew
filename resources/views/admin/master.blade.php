@@ -236,7 +236,7 @@
                     </nav>
                     <div class="pcoded-content">
                         <!-- Page-header start -->
-                        
+                        @yield('page_header')
                         <!-- Page-header end -->
                         <div class="pcoded-inner-content">
                             <!-- Main-body start -->

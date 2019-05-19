@@ -41,8 +41,14 @@ Route::get('/dashboard/check', function () {
 });
 Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
 Route::post('/staff', 'Admin\DashboardController@staffAdd')->name('staff.add');
+Route::post('/serviceOnboard', 'Admin\DashboardController@serviceOnboard')->name('serviceOnboard');
 
 Route::get('/dashboard/onboarding', 'Admin\DashboardController@onboardingDashboard');
 Route::post('/business', 'Admin\BusinessProfileController@business');
 
 Route::get('/dashboard/modal', 'Admin\DashboardController@onboardingmodal');
+
+Route::group(['middleware' => ['auth', 'verified']], function(){
+	Route::get('/settings', 'Admin\SettingsController@settingPage')->name('settings');
+	Route::get('/settings/calendar', 'Admin\SettingsController@availabilityAndCalendar')->name('availabilityAndCalendar');
+});

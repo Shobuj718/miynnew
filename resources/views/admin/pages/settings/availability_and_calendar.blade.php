@@ -1,46 +1,89 @@
+@extends('admin.master')
 
-@section('styles')
-<style type="text/css">
-  input[type="text"]{
-    height: 20px;
-    vertical-align: top;
-  }
-  .field_wrapper div{
-    margin-bottom: 10px;
-  }
-  .add_button{
-    margin-top: 10px;margin-left: 10px;vertical-align: text-bottom;
-  }
-  .remove_button{
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    vertical-align: text-bottom;
-  }
-</style>
+@section('page_header')
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Settings/ Availability & Calendar</h5>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
 @endsection
 
-<div class="modal fade" id="service_modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <!-- <div class="modal-header">
-                    <h4 class="modal-title">New Staff Account</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div> -->
-                <div class="modal-body">
-                     <form id="msform">
-                        <!-- progressbar -->
-                        <ul id="progressbar">
-                            <li class="active">Business hours</li>
-                            <li>Staff members</li>
-                            <li>Services</li>
-                        </ul>
-                        <!-- fieldsets -->
-                        <fieldset>
-                            <!-- <img class="logo" src="{{ asset('/files/assets/images/miynlogo.png') }}" alt="miynlogo.png"> -->
-                            <h5 class="fs-subtitle">Set up your business hours</h5>
+@section('main_content')
+
+<div class="row">
+    <div class="col-sm-12">
+        <!-- Basic Form Inputs card start -->
+        <div class="card">
+            <div class="card-header">
+                <h4>Calendar, Business Hours and Availability</h4>
+            </div>
+            <div class="card-block">
+                <form>
+	                <div class="form-group row">
+	                    <label class="col-sm-2 col-form-label">Time Zone</label>
+	                    <div class="col-sm-10">
+	                        <select name="select" class="form-control">
+	                            <option value="GMT + 06:00">(GMT + 06:00) Dhaka</option>
+	                        </select>
+	                    </div>
+	                </div>
+	                <div class="form-group row">
+	                    <label class="col-sm-2 col-form-label">Local Time</label>
+	                    <div class="col-sm-10">
+	                        <label>
+                                <input type="checkbox" value="">
+                                <span class="cr">
+                                 <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                </span> <span>My business is local, display all times in my own time zone.</span>
+                            </label>
+
+	                    </div>
+	                </div>
+	                <div class="form-group row">
+	                    <label class="col-sm-2 col-form-label">Time Format</label>
+	                    <div class="col-sm-10">
+	                        <select name="select" class="form-control">
+	                            <option value="12 hours(AM/PM)">12 hours(AM/PM)</option>
+	                            <option value="24 hours">24 hours</option>
+	                        </select>
+	                    </div>
+	                </div>
+	                <div class="form-group row">
+	                    <label class="col-sm-2 col-form-label">Start week on</label>
+	                    <div class="col-sm-10">
+	                        <select name="select" class="form-control">
+	                            <option value="sunday">Sunday</option>
+	                            <option value="monday">Monday</option>
+	                            <option value="tuesday">Tuesday</option>
+	                            <option value="wednesday">Wednesday</option>
+	                            <option value="thursday">Thursday</option>
+	                            <option value="friday">Friday</option>
+	                            <option value="saturday">Saturday</option>
+	                        </select>
+	                    </div>
+	                </div>
+
+	                <div class="form-group row">
+	                    <label class="col-sm-2 col-form-label">Calendar increments</label>
+	                    <div class="col-sm-10">
+	                        <select name="select" class="form-control">
+	                            <option value="30 minutes">30 minutes</option>
+	                        </select>
+	                    </div>
+	                </div>
+
+	                <div class="form-group row">
+	                    <label class="col-sm-2 col-form-label">Business hours</label>
+	                    <div class="col-sm-10">
+	                    	<p>Your business hours for appointment are displayed below. Clients will be able to request appointments during these time slots only.</p>
+	                        <h5 class="fs-subtitle">Set up your business hours</h5>
                             <div class="row">
                               <div class="col-md-3">
                                 <div class="form-group">
@@ -307,83 +350,21 @@
                                 </div>
                               </div>
                             </div>
-                            <button type="button" name="next" class="btn btn-primary next" value="Next">Next</button>
-                        </fieldset>
-                        <fieldset class="">
-                            <h5 class="fs-subtitle">Get your staff onboard</h5>
-                            <div class="row">
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <input type="text" name="onboard_staff_name[]" class="form-control" placeholder="Staff name">
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <input type="text" name="onboard_staff_email[]" class="form-control" placeholder="Staff email">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="field_wrapper">
-                            </div>
-                            <div class="row">
-                              <div class="col-md-12">
-                                  <a href="javascript:void(0)" class="add_button"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px;">ADD NEW STAFF MEMBER</h6></a>
-                              </div>
-                              
-                          </div>
-                            <button type="button" name="previous" class="btn btn-inverse btn-outline-inverse previous" value="Previous">Previous</button>
-                            <button type="button" name="next" class="btn btn-primary next" value="Next">Next</button>
-                        </fieldset>
-                        <fieldset>
-                            <h5 class="fs-subtitle">Add your business’s services to your Service Menu</h5>
+	                    </div>
+	                </div>
 
-                             <div class="row">
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <input type="text" name="service_name[]" class="form-control" placeholder="Service name">
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <select class="form-control service_duration" name="service_duration[]" id="service_duration">
-                                      <option value="">Duration</option>
-                                      <option value="15 minutes">15 minutes</option>
-                                      <option value="30 minutes">30 minutes</option>
-                                      <option value="45 minutes">45 minutes</option>
-                                      <option value="1 hour">1 hour</option>
-                                      
-                                  </select>
-                                </div>
-                              </div>
-                               <div class="col-md-3">
-                                <div class="form-group">
-                                 <input type="text" name="service_price[]"  class="form-control" placeholder="Service price">
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="field_wrapper2">
-                            </div>
-                            <div class="row">
-                              <div class="col-md-12">
-                                  <a href="javascript:void(0)" class="add_button2"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px;">ADD SERVICE</h6></a>
-                              </div>
-                              
-                            </div>
-
-                            <button type="button" name="previous" class="btn btn-inverse btn-outline-inverse previous" value="Previous">Previous</button>
-                            <!-- <button type="submit" name="next" class="btn btn-primary submit" value="submit">Submit</button> -->
-                            <button type="button" onclick="submitServiceValue()" class="btn btn-primary waves-effect waves-light ">Save changes</button>
-                        </fieldset>
-                    </form>
-                </div>
-                <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
-                    <button type="button" onclick="submitContactForm()" class="btn btn-primary waves-effect waves-light ">Save changes</button>
-                </div> -->
+	                <div class="form-group row">
+	                    <label class="col-sm-2 col-form-label">Calendar Sync</label>
+	                    <div class="col-sm-10">
+	                        
+	                    </div>
+	                </div>
+	                <button type="button" onclick="submitCalendAndServices()" class="btn btn-primary waves-effect waves-light pull-right" style="text-align:center;">Save changes</button>
+	            </form>
             </div>
         </div>
+    </div>
 </div>
 
 
-    
+@endsection

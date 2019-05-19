@@ -21,54 +21,79 @@
         </div>
     </div>
     <div class="p-15 p-b-0">
-        
+
     </div>
 
     <ul class="pcoded-item pcoded-left-item">
-        <li class="pcoded-hasmenu active pcoded-trigger">
-            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+
+        <li class="">
+            <a href="{{ url('/dashboard') }}" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
                 <span class="pcoded-mtext">Dashboard</span>
                 <span class="pcoded-mcaret"></span>
             </a>
+        </li>
+        <li class="">
+            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                <span class="pcoded-mtext">Inbox</span>
+                <span class="pcoded-mcaret"></span>
+            </a>
+        </li>
+        <li class="">
+            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                <span class="pcoded-mtext">Calendar</span>
+                <span class="pcoded-mcaret"></span>
+            </a>
+        </li>
+        <li class="">
+            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                <span class="pcoded-mtext">Client</span>
+                <span class="pcoded-mcaret"></span>
+            </a>
+        </li>
+
+    </ul>
+    <ul class="pcoded-item pcoded-left-item">
+        <li class="pcoded-hasmenu">
+            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-gift"></i><b>EC</b></span>
+                <span class="pcoded-mtext">Online Presence</span>
+                <span class="pcoded-mcaret"></span>
+            </a>
             <ul class="pcoded-submenu">
-                <li class="active">
-                    <a href="index.html" class="waves-effect waves-dark">
+                <li class=" ">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                        <span class="pcoded-mtext">Default</span>
-                        <span class="pcoded-mcaret"></span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="dashboard-ecommerce.html" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                        <span class="pcoded-mtext">Client</span>
-                        <span class="pcoded-mcaret"></span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="dashboard-crm.html" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                        <span class="pcoded-mtext">Inbox</span>
-                        <span class="pcoded-badge label label-info ">NEW</span>
+                        <span class="pcoded-mtext">Client Portal</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
                 <li class=" ">
-                    <a href="dashboard-analytics.html" class="waves-effect waves-dark">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                        <span class="pcoded-mtext">Calendar</span>
+                        <span class="pcoded-mtext">Website Widget</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-                <li class=" ">
-                    <a href="dashboard-project.html" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                        <span class="pcoded-mtext">Other</span>
-                        <span class="pcoded-mcaret"></span>
-                    </a>
-                </li>
+                
             </ul>
+        </li>
+        <li class="">
+            <a href="{{ route('settings') }}" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                <span class="pcoded-mtext">Settings</span>
+                <span class="pcoded-mcaret"></span>
+            </a>
+        </li>
+        <li class="">
+            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                <span class="pcoded-mtext">Contact Us</span>
+                <span class="pcoded-mcaret"></span>
+            </a>
         </li>
     </ul>
 </div>

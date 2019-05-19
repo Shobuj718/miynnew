@@ -88,6 +88,20 @@ class DashboardController extends Controller
         return response()->json($response);
     }
 
+    public function serviceOnboard(Request $request){
 
+        //this is request data get code
+        //$variable = json_decode($request->staffEmail,true);
+        /*foreach($request->service_price as $data){
+            $service = $data['1'];
+        }*/
+
+        $response = [
+            'success' => 'ok',
+            'message' => "Services created",
+            'value' => $request->all()
+        ];
+        return response()->json($response);
+    }
 
 }
