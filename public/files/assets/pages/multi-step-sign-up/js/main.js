@@ -136,6 +136,27 @@ function submitServiceValue(){
 	var sun_business_hours_am = $('#sun_business_hours_am').val();
 	var sun_business_hours_pm = $('#sun_business_hours_pm').val();
 
+	var mon_business_hours_am = $('#mon_business_hours_am').val();
+	var mon_business_hours_pm = $('#mon_business_hours_pm').val();
+
+	var tue_business_hours_am = $('#tue_business_hours_am').val();
+	var tue_business_hours_pm = $('#tue_business_hours_pm').val();
+
+	var wed_business_hours_am = $('#wed_business_hours_am').val();
+	var wed_business_hours_pm = $('#wed_business_hours_pm').val();
+
+	var thu_business_hours_am = $('#thu_business_hours_am').val();
+	var thu_business_hours_pm = $('#thu_business_hours_pm').val();
+
+	var fri_business_hours_am = $('#fri_business_hours_am').val();
+	var fri_business_hours_pm = $('#fri_business_hours_pm').val();
+
+	var sat_business_hours_am = $('#sat_business_hours_am').val();
+	var sat_business_hours_pm = $('#sat_business_hours_pm').val();
+
+	var tue_business_hours_am = $('#tue_business_hours_am').val();
+	var tue_business_hours_pm = $('#tue_business_hours_pm').val();
+
 	/*var n = $("input[name^= 'onboard_staff_name']").length;
 	var array = $("input[name^='onboard_staff_name']");*/
 	/*for(i=0; i < n; i++) {
@@ -201,11 +222,12 @@ function submitServiceValue(){
 	$.ajax({
             type:'POST',
             url:'/serviceOnboard',
-            data: {_token:CSRF_TOKEN, sun_business_hours_am:sun_business_hours_am, onboard_staff_name:onboard_staff_name, onboard_staff_email:onboard_staff_email, service_name:service_name, service_duration:service_duration, service_price:service_price },
+            data: {_token:CSRF_TOKEN, sun_business_hours_am:sun_business_hours_am, sun_business_hours_pm:sun_business_hours_pm, mon_business_hours_am:mon_business_hours_am, mon_business_hours_pm:mon_business_hours_pm, tue_business_hours_am:tue_business_hours_am, tue_business_hours_pm:tue_business_hours_pm, wed_business_hours_am:wed_business_hours_am, wed_business_hours_pm:wed_business_hours_pm, thu_business_hours_am:thu_business_hours_am, thu_business_hours_pm:thu_business_hours_pm, fri_business_hours_am:fri_business_hours_am, fri_business_hours_pm:fri_business_hours_pm, sat_business_hours_am:sat_business_hours_am, sat_business_hours_pm:sat_business_hours_pm, onboard_staff_name:onboard_staff_name, onboard_staff_email:onboard_staff_email, service_name:service_name, service_duration:service_duration, service_price:service_price },
             dataType:'json',
             success:function(data){
                 console.log(data.success);
                 console.log(data.message);
+                console.log(data.service);
                 console.log(data.value);
                 if(data.success == 'ok'){
                     console.log('ok, success');

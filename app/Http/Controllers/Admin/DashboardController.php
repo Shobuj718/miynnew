@@ -92,12 +92,15 @@ class DashboardController extends Controller
 
         //this is request data get code
         //$variable = json_decode($request->staffEmail,true);
-        /*foreach($request->service_price as $data){
-            $service = $data['1'];
-        }*/
+        foreach($request->onboard_staff_email as $data){
+            $service = $data;
+        }
+
+
 
         $response = [
             'success' => 'ok',
+            'service' => $service,
             'message' => "Services created",
             'value' => $request->all()
         ];
