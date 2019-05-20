@@ -37,6 +37,9 @@
                                             if($staff_status == 1){
                                                 $progressbar += 20;
                                             }
+                                            if($OnboardService == 1){
+                                                $progressbar += 20;
+                                            }
                                             ?>
 
                                             <div class="progress-bar progress-bar-striped progress-bar-success" role="progressbar" style='width:<?php echo "$progressbar"; ?>%' aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -94,7 +97,7 @@
                     </div>
                     <div class="custom-control custom-radio">
                       <input type="radio" class="custom-control-input" id="set_hours_sync_calendar" name="set_hours_sync_calendar">
-                      <label class="custom-control-label" for="set_hours_sync_calendar">Set your availability hours and sync your calendar</label>
+                      <label class="custom-control-label" for="set_hours_sync_calendar"><a href="{{ route('availabilityAndCalendar') }}">Set your availability hours and sync your calendar</a></label>
                     </div>
 
                 </div>

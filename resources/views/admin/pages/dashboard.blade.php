@@ -7,8 +7,7 @@
 ?>
 
 @extends('admin.master')
-
-@section('main_content')
+@section('page_header')
 <div class="page-header">
     <div class="page-block">
         <div class="row align-items-center">
@@ -21,5 +20,9 @@
         </div>
     </div>
 </div>
-<h1>this is dashboard for first page</h1>
+@endsection
+@section('main_content')
+
+<h1>Dashboadr Page</h1>
+
 @endsection

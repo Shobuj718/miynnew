@@ -94,8 +94,8 @@
             </li>
             <li class="user-profile header-notification">
                 <a href="javascript:void(0)" class="waves-effect waves-light">
-                    <img src="../files/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                    <span>Shobuj</span>
+                    <img src="{{asset('/files/assets/images/avatar-blank.jpg')}}" class="img-radius" alt="User-Profile-Image">
+                    <span>{{Auth::user()->name}}</span>
                     <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">

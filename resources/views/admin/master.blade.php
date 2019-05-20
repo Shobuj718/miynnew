@@ -14,7 +14,7 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('/files/assets/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('/files/assets/images/miynlogo.png') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- waves.css -->
@@ -244,7 +244,7 @@
                                 <div class="page-wrapper">
                                     @yield('main_content')
                                 </div>
-                                <div id="styleSelector"> </div>
+                                <!-- <div id="styleSelector"> </div> -->
                             </div>
                         </div>
                     </div>

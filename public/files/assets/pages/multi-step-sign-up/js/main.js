@@ -227,7 +227,6 @@ function submitServiceValue(){
             success:function(data){
                 console.log(data.success);
                 console.log(data.message);
-                console.log(data.service);
                 console.log(data.value);
                 if(data.success == 'ok'){
                     console.log('ok, success');

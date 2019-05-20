@@ -50,13 +50,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="sun_business_hours_am" id="sun_business_hours_am">
-                                      <option value="user">9:00am</option>
-                                      <option value="editor">6:30am</option>
-                                      <option value="writter">7:00am</option>
-                                      <option value="writter">7:30am</option>
-                                      <option value="writter">8:00am</option>
-                                      <option value="writter">8:30am</option>
-                                      <option value="writter">9:00am</option>
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
                                   </select>
                                 </div>
                               </div>
@@ -68,13 +68,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="sun_business_hours_pm" id="sun_business_hours_pm">
-                                      <option value="user">5:00pm</option>
-                                      <option value="editor">2:30pm</option>
-                                      <option value="editor">3:00pm</option>
-                                      <option value="editor">3:30pm</option>
-                                      <option value="editor">4:00pm</option>
-                                      <option value="editor">4:30pm</option>
-                                      <option value="editor">5:00pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
                                   </select>
                                 </div>
                               </div>
@@ -88,13 +88,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="mon_business_hours_am" id="mon_business_hours_am">
-                                      <option value="user">9:00am</option>
-                                      <option value="editor">6:30am</option>
-                                      <option value="writter">7:00am</option>
-                                      <option value="writter">7:30am</option>
-                                      <option value="writter">8:00am</option>
-                                      <option value="writter">8:30am</option>
-                                      <option value="writter">9:00am</option>
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
                                   </select>
                                 </div>
                               </div>
@@ -106,13 +106,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="mon_business_hours_pm" id="mon_business_hours_pm">
-                                      <option value="user">5:00pm</option>
-                                      <option value="editor">2:30pm</option>
-                                      <option value="editor">3:00pm</option>
-                                      <option value="editor">3:30pm</option>
-                                      <option value="editor">4:00pm</option>
-                                      <option value="editor">4:30pm</option>
-                                      <option value="editor">5:00pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
                                   </select>
                                 </div>
                               </div>
@@ -126,13 +126,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="tue_business_hours_am" id="tue_business_hours_am">
-                                      <option value="user">9:00am</option>
-                                      <option value="editor">6:30am</option>
-                                      <option value="writter">7:00am</option>
-                                      <option value="writter">7:30am</option>
-                                      <option value="writter">8:00am</option>
-                                      <option value="writter">8:30am</option>
-                                      <option value="writter">9:00am</option>
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
                                   </select>
                                 </div>
                               </div>
@@ -144,13 +144,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="tue_business_hours_pm" id="tue_business_hours_pm">
-                                      <option value="user">5:00pm</option>
-                                      <option value="editor">2:30pm</option>
-                                      <option value="editor">3:00pm</option>
-                                      <option value="editor">3:30pm</option>
-                                      <option value="editor">4:00pm</option>
-                                      <option value="editor">4:30pm</option>
-                                      <option value="editor">5:00pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
                                   </select>
                                 </div>
                               </div>
@@ -164,13 +164,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="wed_business_hours_am" id="wed_business_hours_am">
-                                      <option value="user">9:00am</option>
-                                      <option value="editor">6:30am</option>
-                                      <option value="writter">7:00am</option>
-                                      <option value="writter">7:30am</option>
-                                      <option value="writter">8:00am</option>
-                                      <option value="writter">8:30am</option>
-                                      <option value="writter">9:00am</option>
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
                                   </select>
                                 </div>
                               </div>
@@ -182,13 +182,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="wed_business_hours_pm" id="wed_business_hours_pm">
-                                      <option value="user">5:00pm</option>
-                                      <option value="editor">2:30pm</option>
-                                      <option value="editor">3:00pm</option>
-                                      <option value="editor">3:30pm</option>
-                                      <option value="editor">4:00pm</option>
-                                      <option value="editor">4:30pm</option>
-                                      <option value="editor">5:00pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
                                   </select>
                                 </div>
                               </div>
@@ -202,13 +202,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="thu_business_hours_am" id="thu_business_hours_am">
-                                      <option value="user">9:00am</option>
-                                      <option value="editor">6:30am</option>
-                                      <option value="writter">7:00am</option>
-                                      <option value="writter">7:30am</option>
-                                      <option value="writter">8:00am</option>
-                                      <option value="writter">8:30am</option>
-                                      <option value="writter">9:00am</option>
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
                                   </select>
                                 </div>
                               </div>
@@ -220,13 +220,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="thu_business_hours_pm" id="thu_business_hours_pm">
-                                      <option value="user">5:00pm</option>
-                                      <option value="editor">2:30pm</option>
-                                      <option value="editor">3:00pm</option>
-                                      <option value="editor">3:30pm</option>
-                                      <option value="editor">4:00pm</option>
-                                      <option value="editor">4:30pm</option>
-                                      <option value="editor">5:00pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
                                   </select>
                                 </div>
                               </div>
@@ -240,13 +240,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="fri_business_hours_am" id="fri_business_hours_am">
-                                      <option value="user">9:00am</option>
-                                      <option value="editor">6:30am</option>
-                                      <option value="writter">7:00am</option>
-                                      <option value="writter">7:30am</option>
-                                      <option value="writter">8:00am</option>
-                                      <option value="writter">8:30am</option>
-                                      <option value="writter">9:00am</option>
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
                                   </select>
                                 </div>
                               </div>
@@ -258,13 +258,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="fri_business_hours_pm" id="fri_business_hours_pm">
-                                      <option value="user">5:00pm</option>
-                                      <option value="editor">2:30pm</option>
-                                      <option value="editor">3:00pm</option>
-                                      <option value="editor">3:30pm</option>
-                                      <option value="editor">4:00pm</option>
-                                      <option value="editor">4:30pm</option>
-                                      <option value="editor">5:00pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
                                   </select>
                                 </div>
                               </div>
@@ -278,13 +278,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="sat_business_hours_am" id="sat_business_hours_am">
-                                      <option value="user">9:00am</option>
-                                      <option value="editor">6:30am</option>
-                                      <option value="writter">7:00am</option>
-                                      <option value="writter">7:30am</option>
-                                      <option value="writter">8:00am</option>
-                                      <option value="writter">8:30am</option>
-                                      <option value="writter">9:00am</option>
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
                                   </select>
                                 </div>
                               </div>
@@ -296,13 +296,13 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <select class="form-control" name="sat_business_hours_pm" id="sat_business_hours_pm">
-                                      <option value="user">5:00pm</option>
-                                      <option value="editor">2:30pm</option>
-                                      <option value="editor">3:00pm</option>
-                                      <option value="editor">3:30pm</option>
-                                      <option value="editor">4:00pm</option>
-                                      <option value="editor">4:30pm</option>
-                                      <option value="editor">5:00pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
                                   </select>
                                 </div>
                               </div>
@@ -357,7 +357,7 @@
                               </div>
                                <div class="col-md-3">
                                 <div class="form-group">
-                                 <input type="text" name="service_price[]"  class="form-control" placeholder="Service price">
+                                 <input type="number" name="service_price[]"  class="form-control" placeholder="Service price">
                                 </div>
                               </div>
                             </div>
@@ -373,7 +373,22 @@
 
                             <button type="button" name="previous" class="btn btn-inverse btn-outline-inverse previous" value="Previous">Previous</button>
                             <!-- <button type="submit" name="next" class="btn btn-primary submit" value="submit">Submit</button> -->
-                            <button type="button" onclick="submitServiceValue()" class="btn btn-primary waves-effect waves-light ">Save changes</button>
+                            <button type="button" onclick="submitServiceValue()" name="next" class="btn btn-primary next waves-effect waves-light ">Save changes</button>
+
+                        </fieldset>
+                        <fieldset class="">
+                            <h5 class="fs-subtitle">ok</h5>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <h4>Congrats, Your online scheduler is ready!</h4>
+                                </div>
+                              </div>
+                              
+                            </div>
+                            
+                            <button type="button" name="previous" class="btn btn-inverse btn-outline-inverse previous" value="Previous">Previous</button>
+                            <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
                         </fieldset>
                     </form>
                 </div>
