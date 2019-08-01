@@ -1,6 +1,5 @@
-<button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#onboard_modal">Onboard Modal</button>
 
-    <div class="modal fade" id="onboard_modal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="onboard_modal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <!-- <div class="modal-header">
@@ -13,42 +12,42 @@
                     <form role="form" id="registration-form"  class="registration-form">                                                    
                         <fieldset>
                             <div class="form-top">
-                                <div class="form-top-left text-center">
+                                <div class="text-center">
                                     <h3>Your business profile</h3>
                                     <p>Hi Shobuj BD, Get Started by telling us about your business</p>
-                                </div>
-                                <div class="form-top-right">
-                                    <i class="fa fa-user"></i>
                                 </div>
                             </div>
                             <div class="form-bottom">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <select name="industry_id" id="industry_id" class="col-sm-10 form-control">
-                                                <option value="1">industry1</option>
-                                                <option value="2">industry2</option>
-                                                <option value="3">industry3</option>
+                                            <select name="industry_id" id="industry_id" class="col-sm-10 form-control" onchange="get_professions();">
+                                            <!-- <select name="industry_id" id="industry_id" class="col-sm-10 form-control"> -->
+                                                <option value="">Select industry type</option>
+                                                @foreach($industries as $value)
+                                                  <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                                @endforeach
                                             </select>
+                                            <span class="error_induestry_id"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <select name="profession_id" id="profession_id" class="col-sm-10 form-control">
-                                                <option value="1">Profession1</option>
-                                                <option value="2">Profession2</option>
-                                                <option value="3">Profession3</option>
+                                                <option value="">Select profession type</option>
                                             </select>
+                                             <span class="error_profession_id"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <select name="country_with_code" id="country_with_code" class="col-sm-10 form-control">
-                                                <option value="country1 88">Country1 (88)</option>
-                                                <option value="country2 99">Country2 (99)</option>
-                                                <option value="country3 66">Country3 (66)</option>
+                                                <option value="BD +88">BD(+88)</option>
+                                                <option value="AU +61">AUS(+61)</option>
+                                                <option value="USA +1">USA(+1)</option>
                                             </select>
                                         </div>
                                     </div>
@@ -64,46 +63,466 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <select name="persons" id="persons" class="col-sm-10 form-control">
-                                                <option value="1">1 Person</option>
-                                                <option value="2">2 Person</option>
-                                                <option value="3">3 Person</option>
-                                            </select>
+                                            <input type="text" name="business_name" id="business_name" class="form-control" placeholder="Enter Business Name">
+                                            <p class="error_business_name"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" name="web_url" id="web_url" class="form-control" placeholder="Website URL">
-                                            <p class="error_web_url"></p>
+                                            <span class="error_web_url"></span>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- google map and address, lat, lng, postal/zip code get  -->
+
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <input id="address" type="text" class="form-control" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />
+                                    <div id="map_canvas" style="width:; height:300px"></div>
+                                  </div>
+                                </div>
                                 
                                 <div class="form-group">
-                                    <input type="text" name="address" id="address" class="form-control" placeholder="Address">
                                     <input type="hidden" name="user_id" id="user_id" class="form-control" value="{{ Auth::user()->id }}">
                                     <p class="error_address"></p>
                                 </div>
+                                
+                                <!-- <ul id="geoData">
+                                    <li>Full Address: <span id="location-snap"></span></li>
+                                    <li>Latitude: <span id="lat-span"></span></li>
+                                    <li>Longitude: <span id="lon-span"></span></li>
+                                    <li>Postal Code: <span id="postal-code"></span></li>
+                                </ul> -->
 
-                                <div class="form-group">
+                                <!-- google map end -->
+
+                                <!-- <div class="form-group">
                                     <label>
                                     <input type="checkbox" id="present_number_address" value="1"> Present my phone number & address to my clients</label>
-                                </div>
+                                </div> -->
 
                                 <div class="text-right">                                    
                                     <button type="button" class="btn btn-next open1"  >Next</button>
                                 </div>
                             </div>
                         </fieldset>
+
+
                         
                         <fieldset>
                             <div class="form-top">
-                                <div class="form-top-left">
-                                    <h4 class="text-center"> Select your business needs</h4>
+                                <div class="text-center">
+                                    <h4 class="text-center"> Business Time Zone </h4>
+                                    <p class="text-center">MIYN can help you with all these tasks.</p>
+                                </div>
+                            </div>
+                            <div class="form-bottom">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Time Zone</label>
+                                    <div class="col-sm-10">
+                                        <select name="time_zone" id="time_zone" class="form-control">
+                                            <option value="GMT + 06:00">(GMT + 06:00) Dhaka</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Time Format</label>
+                                    <div class="col-sm-10">
+                                        <select name="time_format" id="time_format" class="form-control">
+                                            <option value="12 hours(AM/PM)">12 hours(AM/PM)</option>
+                                            <option value="24 hours(AM/PM)">24 hours(AM/PM)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Start week on</label>
+                                    <div class="col-sm-10">
+                                        <select name="start_weak_on" id="start_weak_on" class="form-control">
+                                            <option value="sunday">Sunday</option>
+                                            <option value="monday">Monday</option>
+                                            <option value="tuesday">Tuesday</option>
+                                            <option value="wednesday">Wednesday</option>
+                                            <option value="thursday">Thursday</option>
+                                            <option value="friday">Friday</option>
+                                            <option value="saturday">Saturday</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-previous">Previous</button>
+                                    <button type="button" class="btn btn-next2 open2">Next</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-top">
+                                <div class="text-center">
+                                    <h4 class="text-center"> Add Services</h4>
                                     <p class="text-center">MIYN can help you with all these tasks, so feel free to to select more than one</p>
                                 </div>
-                                <div class="form-top-right">
-                                    <i class="fa fa-key"></i>
+                            </div>
+                            <div class="form-bottom">
+                                <div class="row">
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <input type="text" name="service_name[]" class="form-control" placeholder="Service name">
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control service_duration" name="service_duration[]" id="service_duration">
+                                      <option value="">Duration</option>
+                                      <option value="15 minutes">15 minutes</option>
+                                      <option value="30 minutes">30 minutes</option>
+                                      <option value="45 minutes">45 minutes</option>
+                                      <option value="1 hour">1 hour</option>
+                                      
+                                  </select>
+                                </div>
+                              </div>
+                               <div class="col-md-3">
+                                <div class="form-group">
+                                 <input type="number" name="service_price[]"  class="form-control" placeholder="Service price">
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="field_wrapper2">
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <a href="javascript:void(0)" class="add_button2"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px;text-align: center;">ADD SERVICE</h6></a>
+                              </div>
+                              
+                            </div>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-previous">Previous</button>
+                                    <button type="button" class="btn btn-next3 open2">Next</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-top">
+                                <div class="text-center">
+                                    <h4 class="text-center"> Add Staff </h4>
+                                    <p class="text-center">MIYN can help you with all these tasks.</p>
+                                </div>
+                            </div>
+                            <div class="form-bottom">
+                              <div class="row">
+                              <div class="col-md-5">
+                                <div class="form-group">
+                                  <input type="text" name="onboard_staff_name[]" class="form-control" placeholder="Staff name">
+                                </div>
+                              </div>
+                              <div class="col-md-5">
+                                <div class="form-group">
+                                  <input type="text" name="onboard_staff_email[]" class="form-control" placeholder="Staff email">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="field_wrapper">
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <a href="javascript:void(0)" class="add_button"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px;text-align: center;">ADD NEW STAFF MEMBER</h6></a>
+                              </div>
+                              
+                          </div>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-previous">Previous</button>
+                                    <button type="button" class="btn btn-next4 open2">Next</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-top">
+                                <div class="text-center">
+                                    <h4 class="text-center"> Set up your business hours </h4>
+                                    <p class="text-center">MIYN can help you with all these tasks.</p>
+                                </div>
+                            </div>
+                            <div class="form-bottom">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <a href="javascript:void(0)"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px; margin-top: 12px;">SUNDAY</h6></a>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="sun_business_hours_am" id="sun_business_hours_am">
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
+                                  </select>
+                                </div>
+                              </div>
+                               <div class="col-md-1">
+                                <div class="form-group">
+                                  <h6 style="margin-top: 12px;">to</h6>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="sun_business_hours_pm" id="sun_business_hours_pm">
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <a href="javascript:void(0)"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px; margin-top: 12px;">MONDAY</h6></a>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="mon_business_hours_am" id="mon_business_hours_am">
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
+                                  </select>
+                                </div>
+                              </div>
+                               <div class="col-md-1">
+                                <div class="form-group">
+                                  <h6 style="margin-top: 12px;">to</h6>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="mon_business_hours_pm" id="mon_business_hours_pm">
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <a href="javascript:void(0)"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px; margin-top: 12px;">TUESDAY</h6></a>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="tue_business_hours_am" id="tue_business_hours_am">
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
+                                  </select>
+                                </div>
+                              </div>
+                               <div class="col-md-1">
+                                <div class="form-group">
+                                  <h6 style="margin-top: 12px;">to</h6>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="tue_business_hours_pm" id="tue_business_hours_pm">
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <a href="javascript:void(0)"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px; margin-top: 12px;">WEDNESDAY</h6></a>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="wed_business_hours_am" id="wed_business_hours_am">
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
+                                  </select>
+                                </div>
+                              </div>
+                               <div class="col-md-1">
+                                <div class="form-group">
+                                  <h6 style="margin-top: 12px;">to</h6>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="wed_business_hours_pm" id="wed_business_hours_pm">
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <a href="javascript:void(0)"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px; margin-top: 12px;">THURSDAY</h6></a>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="thu_business_hours_am" id="thu_business_hours_am">
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
+                                  </select>
+                                </div>
+                              </div>
+                               <div class="col-md-1">
+                                <div class="form-group">
+                                  <h6 style="margin-top: 12px;">to</h6>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="thu_business_hours_pm" id="thu_business_hours_pm">
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <a href="javascript:void(0)"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px; margin-top: 12px;">FRIDAY</h6></a>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="fri_business_hours_am" id="fri_business_hours_am">
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
+                                  </select>
+                                </div>
+                              </div>
+                               <div class="col-md-1">
+                                <div class="form-group">
+                                  <h6 style="margin-top: 12px;">to</h6>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="fri_business_hours_pm" id="fri_business_hours_pm">
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <a href="javascript:void(0)"><h6 style="background-color: #22afea;color: white;padding: 8px;border-radius: 16px; margin-top: 12px;">SATURDAY</h6></a>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="sat_business_hours_am" id="sat_business_hours_am">
+                                      <option value="9:00am">9:00am</option>
+                                      <option value="6:30am">6:30am</option>
+                                      <option value="7:00am">7:00am</option>
+                                      <option value="7:30am">7:30am</option>
+                                      <option value="8:00am">8:00am</option>
+                                      <option value="8:30am">8:30am</option>
+                                      <option value="9:00am">9:00am</option>
+                                  </select>
+                                </div>
+                              </div>
+                               <div class="col-md-1">
+                                <div class="form-group">
+                                  <h6 style="margin-top: 12px;">to</h6>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select class="form-control" name="sat_business_hours_pm" id="sat_business_hours_pm">
+                                      <option value="5:00pm">5:00pm</option>
+                                      <option value="2:30pm">2:30pm</option>
+                                      <option value="3:00pm">3:00pm</option>
+                                      <option value="3:30pm">3:30pm</option>
+                                      <option value="4:00pm">4:00pm</option>
+                                      <option value="4:30pm">4:30pm</option>
+                                      <option value="5:00pm">5:00pm</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-previous">Previous</button>
+                                    <button type="button" class="btn btn-next5 open2">Next</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-top">
+                                <div class="text-center">
+                                    <h4 class="text-center"> Select your business needs</h4>
+                                    <p class="text-center">MIYN can help you with all these tasks, so feel free to to select more than one</p>
                                 </div>
                             </div>
                             <div class="form-bottom">
@@ -177,7 +596,7 @@
                                    </div>
                                 <div class="text-right">
                                     <button type="button" class="btn btn-previous">Previous</button>
-                                    <button type="button" class="btn btn-next2 open2">Next</button>
+                                    <button type="button" class="btn btn-next6">Next</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -202,7 +621,7 @@
 
                              <div class="panel-heading">
                               <h4 class="text-center">Need a little extra hand-holding?</h4>
-                              <p class="text-center"><a href="http://127.0.0.1:8000">Schedule a call</a> with an onboarding specialist to get a one-on-one walk through</p>
+                              <p class="text-center"><a href="http://test.miyn.net/">Schedule a call</a> with an onboarding specialist to get a one-on-one walk through</p>
                             </div>
                         </fieldset>
                     

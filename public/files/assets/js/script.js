@@ -1,5 +1,22 @@
 "use strict";
 $(document).ready(function() {
+    
+    //Date Time Selection By Aminur on Confirm Appointment
+    $(".appTime").attr('disabled', true);
+    $(".dateTimeParent .appDate").change(function() {
+        
+        //disable and remove checked from all
+        $(".appTime").attr('disabled', true);
+        $(".appTime").prop("checked", false);
+        
+        //enable and active check property
+        $(this).parent().find(".appTime").attr('disabled', false);
+        $(this).parent().find(".appTime").attr('checked', true);
+        
+    });
+    
+    
+    
     // card js start
     $(".card-header-right .close-card").on('click', function() {
         var $this = $(this);

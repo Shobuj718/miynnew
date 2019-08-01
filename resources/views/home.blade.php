@@ -1,3 +1,9 @@
+<?php
+
+    echo "<script>window.location = '/app/dashboard'</script>";
+  
+?>
+
 @extends('layouts.app')
 
 @section('content')

@@ -1,0 +1,24 @@
+[08-Jul-2019 05:45:33 UTC] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\FatalThrowableError: syntax error, unexpected 'body' (T_STRING), expecting ',' or ')' in /home/vcita/app.miyn.net/bookit/storage/framework/views/21fefc28cd20f0551afcd34307621b451f53b76e.php:173
+Stack trace:
+#0 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(59): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/vcita/app...', Array)
+#1 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/View.php(142): Illuminate\View\Engines\CompilerEngine->get('/home/vcita/app...', Array)
+#2 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/View.php(125): Illuminate\View\View->getContents()
+#3 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/View.php(90): Illuminate\View\View->renderContents()
+#4 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/Http/Response.php(42): Illuminate\View\View->render()
+#5 /home/vcita/app.miyn. in /home/vcita/app.miyn.net/bookit/storage/framework/views/21fefc28cd20f0551afcd34307621b451f53b76e.php on line 173
+[08-Jul-2019 05:45:44 UTC] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\FatalThrowableError: syntax error, unexpected 'body' (T_STRING), expecting ',' or ')' in /home/vcita/app.miyn.net/bookit/storage/framework/views/21fefc28cd20f0551afcd34307621b451f53b76e.php:173
+Stack trace:
+#0 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(59): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/vcita/app...', Array)
+#1 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/View.php(142): Illuminate\View\Engines\CompilerEngine->get('/home/vcita/app...', Array)
+#2 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/View.php(125): Illuminate\View\View->getContents()
+#3 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/View.php(90): Illuminate\View\View->renderContents()
+#4 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/Http/Response.php(42): Illuminate\View\View->render()
+#5 /home/vcita/app.miyn. in /home/vcita/app.miyn.net/bookit/storage/framework/views/21fefc28cd20f0551afcd34307621b451f53b76e.php on line 173
+[08-Jul-2019 05:46:38 UTC] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\FatalThrowableError: syntax error, unexpected 'body' (T_STRING), expecting ',' or ')' in /home/vcita/app.miyn.net/bookit/storage/framework/views/21fefc28cd20f0551afcd34307621b451f53b76e.php:173
+Stack trace:
+#0 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(59): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/vcita/app...', Array)
+#1 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/View.php(142): Illuminate\View\Engines\CompilerEngine->get('/home/vcita/app...', Array)
+#2 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/View.php(125): Illuminate\View\View->getContents()
+#3 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/View/View.php(90): Illuminate\View\View->renderContents()
+#4 /home/vcita/app.miyn.net/bookit/vendor/laravel/framework/src/Illuminate/Http/Response.php(42): Illuminate\View\View->render()
+#5 /home/vcita/app.miyn. in /home/vcita/app.miyn.net/bookit/storage/framework/views/21fefc28cd20f0551afcd34307621b451f53b76e.php on line 173

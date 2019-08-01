@@ -21749,3 +21749,95 @@ span.value {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+
+.view-btn {}
+
+.appoint-table .btn, .booking-container .btn {
+    background: #3498db;
+    font-size: 13px;
+    padding: 4px!important;
+    width: 90px;
+    text-align: center;
+    display: inline-block;
+    transition: .3s;
+    border-radius: 0px!important;
+}
+
+.appoint-table .btn.pending-btn {
+    background-color: #f39c12;
+    color: #fff;
+}
+
+.appoint-table .btn:focus, .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.appoint-table .btn.active-btn, .booking-container .btn.active-btn {
+    background-color: #2ecc71;
+    color: #fff;
+}
+.appoint-table .btn:hover, .card-block.booking-container .btn:hover{background-color: #eff5f7!important; color:#333!important;}
+.table.appoint-table > thead > tr > th {
+    border: 0px;
+    background: #eff5f7;
+}
+.dataTables_length select.form-control {
+    border: 1px solid #eff5f7;
+    height: 40px!important;
+}
+
+.dataTables_filter input.form-control.input-sm {
+    border: 1px solid #eff5f7;
+    height: 40px;
+    background: #eff5f7;
+}
+.table.appoint-table tr td{
+    border:0px;
+    padding: 0.75rem!important;
+}
+.appoint-table tbody tr:nth-child(even) td {
+    background: #fbfbfb;
+}
+.booking-info h4 {
+    display: inline-block;
+    box-shadow: 0px 2px 27px 0px rgba(154, 161, 171, 0.18);
+    -webkit-box-shadow: 0px 2px 27px 0px rgba(154, 161, 171, 0.18);
+    background: #fff;
+    font-size: 15px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.booking-info h4.pending span {
+    color: #e74c3c;
+}
+
+.booking-info h4.active span {
+    color: #2ecc71;
+}
+
+.booking-info p {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.booking-info p i {
+    width: 35px!important;
+    display: inline-block;
+    color: #34495e;
+    font-size: 17px;
+}
+.card-block.booking-container .btn {
+    width: 120px;
+    margin-right: 10px;
+}
+
+.card-block.booking-container .btn.delete-btn {
+    background: #e74c3c;
+}
+
+.booking-container .booking-content {
+    margin-bottom: 20px;
+}

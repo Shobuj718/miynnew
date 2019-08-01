@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Mega Able bootstrap admin template by Phoenixcoded</title>
+    <title>MIYN-Register Page</title>
 
       <!-- Meta -->
       <meta charset="utf-8">
@@ -13,7 +13,7 @@
       <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
       <meta name="author" content="Phoenixcoded" />
       <!-- Favicon icon -->
-      <link rel="icon" href="{{asset('/files/assets/images/favicon.ico')}}" type="image/x-icon">
+      <link rel="icon" href="{{asset('/files/assets/images/miynlogo.png')}}" type="image/x-icon">
       <!-- Google font-->     
       <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
       <!-- Required Fremwork -->
@@ -104,7 +104,7 @@
                                         <h3 class="text-center txt-primary">Sign up</h3>
                                     </div>
                                 </div>
-                                <div class="row m-b-20">
+                                <!--<div class="row m-b-20">
                                     <div class="col-md-6">
                                         <a href="#!" class="btn btn-facebook m-b-20 btn-block waves-effect waves-light"><i class="icofont icofont-social-facebook"></i>facebook</a>
                                     </div>
@@ -112,16 +112,16 @@
                                         <a href="#!" class="btn btn-twitter m-b-0 btn-block waves-effect waves-light"><i class="icofont icofont-social-twitter"></i>twitter</a>
                                     </div>
                                 </div>
-                                <p class="text-muted text-center p-b-5">Sign up with your regular account</p>
+                                <p class="text-muted text-center p-b-5">Sign up with your regular account</p>-->
                                 <div class="form-group form-primary">
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                    @error('name')
+                                    <input type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                    @error('firstname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
                                     <span class="form-bar"></span>
-                                    <label class="float-label">Choose Username</label>
+                                    <label class="float-label">Business Name</label>
                                 </div>
                                 <div class="form-group form-primary">
                                     <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -163,7 +163,7 @@
                                                 <span class="text-inverse">I read and accept <a href="#">Terms &amp; Conditions.</a></span>
                                             </label>
                                         </div>
-                                    </div>
+                                    </div><!--
                                     <div class="col-md-12">
                                         <div class="checkbox-fade fade-in-primary">
                                             <label>
@@ -172,7 +172,7 @@
                                                 <span class="text-inverse">Send me the <a href="">Newsletter</a> weekly.</span>
                                             </label>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
@@ -185,9 +185,9 @@
                                         <p class="text-inverse text-left m-b-0">Already Registered?</p>
                                         <p class="text-inverse text-left"><a href="{{ route('login') }}"><b>Login</b></a></p>
                                     </div>
-                                    <div class="col-md-2">
-                                        <img src="{{asset('/files/assets/images/auth/Logo-small-bottom.png')}}" alt="small-logo.png">
-                                    </div>
+                                    <!--<div class="col-md-2">
+                                        <img src="{{asset('/files/assets/images/miynlogo.png')}}" alt="small-logo.png">
+                                    </div>-->
                                 </div>
                             </div>
                         </div>

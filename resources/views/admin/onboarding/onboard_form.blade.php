@@ -7,11 +7,18 @@
 <link rel="stylesheet" href="{{asset('/multistep_form/font-awesome/css/font-awesome.min.css')}}">
 <link rel="stylesheet" href="{{asset('/multistep_form/css/form-elements.css')}}">
 <link rel="stylesheet" href="{{asset('/multistep_form/css/style.css')}}">
+<link rel="stylesheet" href="{{asset('/files/bower_components/select2/css/select2.min.css')}}" />
+    <!-- Multi Select css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('/files/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('/files/bower_components/multiselect/css/multi-select.css')}}" />
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('/files/assets/css/style.css')}}">
+
 
 @endsection
 
 @section('main_content')
-@include('admin.onboarding.showModal1')
+@include('admin.onboarding.showModal')
 <div class="page-body">
     <div class="row">
         
@@ -161,6 +168,20 @@
                                     </div>
                                     
                                 </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Will provide the followin services</label>
+                                    <div class="col-sm-9">
+                                        <select class="js-example-basic-multiple-limit col-sm-12" multiple="multiple">
+                                            <option value="AL">Alabama</option>
+                                            <option value="WY">Wyoming</option>
+                                            <option value="WY">Coming</option>
+                                            <option value="WY">Hanry Die</option>
+                                            <option value="WY">John Doe</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
@@ -183,8 +204,13 @@
                                 </div> -->
                             </form>
                         </div>
+                         
+                        <div class="card-block">                               
+                            </div>
                     </div>
                     <!-- Basic Inputs Validation end -->
+
+                   
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
@@ -207,7 +233,7 @@
     if( 1===1){
         echo '<script type="text/javascript">
             $(document).ready(function(){
-                $("#onboard_modal").modal("show");
+                $("#staff_modal").modal("show");
             });
             </script>';
     }
@@ -215,6 +241,16 @@
         echo "<script>window.location = '/dashboard'</script>";
     }
 ?>
+
+<script type="text/javascript" src="{{asset('/files/bower_components/select2/js/select2.full.min.js')}}"></script>
+<!-- Multiselect js -->
+<script type="text/javascript" src="{{asset('/files/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js')}}">
+</script>
+<script type="text/javascript" src="{{asset('/files/bower_components/multiselect/js/jquery.multi-select.js')}}"></script>
+<script type="text/javascript" src="{{asset('/files/assets/js/jquery.quicksearch.js')}}"></script>
+<!-- Custom js -->
+<script type="text/javascript" src="{{asset('/files/assets/pages/advance-elements/select2-custom.js')}}"></script>
+
 
 <script>
 

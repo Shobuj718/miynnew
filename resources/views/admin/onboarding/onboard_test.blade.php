@@ -8,10 +8,32 @@
 <link rel="stylesheet" href="{{asset('/multistep_form/css/form-elements.css')}}">
 <link rel="stylesheet" href="{{asset('/multistep_form/css/style.css')}}">
 
+<style>
+    .pac-container{
+        z-index:9999;
+    }
+      /*input[type="text"]{
+    height: 20px;
+    vertical-align: top;
+      }*/
+    .field_wrapper div{
+    margin-bottom: 10px;
+    }
+    .add_button{
+    margin-top: 10px;margin-left: 10px;vertical-align: text-bottom;
+    }
+    .remove_button{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+    }
+</style>
+
 @endsection
 
 @section('main_content')
-@include('admin.onboarding.showModal1')
+@include('admin.onboarding.showmodal1')
 <div class="page-body">
     <div class="row">
         
@@ -107,7 +129,6 @@
                 
     
     <!-- Modal large-->
-    <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#staff_modal">Website widget</button>
 
     <div class="modal fade" id="staff_modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
@@ -209,74 +230,235 @@
             $(document).ready(function(){
                 $("#onboard_modal").modal("show");
             });
+
             </script>';
+
     }
     else{
         echo "<script>window.location = '/dashboard'</script>";
     }
 ?>
 
-<script>
+<script src="{{ asset('/files/assets/pages/multi-step-sign-up/js/main.js')}}"></script>
 
-function submitContactForm(){
-
-
-
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-    var staff_name = $('#staff_name').val();
-    var staff_email = $('#staff_email').val();
-    var manage_client_records = $('#manage_client_records:checked').val();
-
-    alert(staff_name);
-
-    if(staff_name.trim() == '' ){
-        alert('Please enter your staff name.');
-        $('#staff_name').focus();
-         $('.staff_name_error').html('<span style="color:red;">Please enter staff name</p>');
-        return false;
-
-    }
-    else if(staff_email.trim() == '' ){
-        alert('Please enter your staff email.');
-        $('#staff_email').focus();
-         $('.staff_email_error').html('<span style="color:red;">Please enter staff email</p>');
-        return false;
-
-    }
-
-    else{
-        //alert('hhhh');
-        
-        $.ajax({
-                type:'POST',
-                url:'{{url("/staff")}}',
-                data:{_token:CSRF_TOKEN, staff_name:staff_name },
-                dataType:'json',
-                success:function(data){
-                    console.log(data.success);
-                    console.log(data.message);
-                    if(data.success == 'ok'){
-                        //$('staff_modal').modal('hide');
-                        console.log('okee');
-                    }else{
-                        console.log('okee');
-                    }
-                   
-                }
-            });
-        }
-    }
-</script>
 <script src="{{asset('/multistep_form/assets/js/jquery-1.11.1.min.js')}}"></script>
 <script src="{{asset('/multistep_form/js/jquery.backstretch.min.js')}}"></script>
 <script src="{{asset('/multistep_form/js/retina-1.1.0.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('/multistep_form/files/bower_components/modernizr/js/css-scrollbars.js')}}"></script>
 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhDZ-X-FmlL7R9vg4VA7843bel7S4GOac&libraries=places" type="text/javascript"></script>
 
-<script type="text/javascript">
-        
-jQuery(document).ready(function() {
+
+<!-- staff add  -->
+<script>
+function submitServiceValue(){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+    var sun_business_hours_am = $('#sun_business_hours_am').val();
+    var sun_business_hours_pm = $('#sun_business_hours_pm').val();
+
+    var mon_business_hours_am = $('#mon_business_hours_am').val();
+    var mon_business_hours_pm = $('#mon_business_hours_pm').val();
+
+    var tue_business_hours_am = $('#tue_business_hours_am').val();
+    var tue_business_hours_pm = $('#tue_business_hours_pm').val();
+
+    var wed_business_hours_am = $('#wed_business_hours_am').val();
+    var wed_business_hours_pm = $('#wed_business_hours_pm').val();
+
+    var thu_business_hours_am = $('#thu_business_hours_am').val();
+    var thu_business_hours_pm = $('#thu_business_hours_pm').val();
+
+    var fri_business_hours_am = $('#fri_business_hours_am').val();
+    var fri_business_hours_pm = $('#fri_business_hours_pm').val();
+
+    var sat_business_hours_am = $('#sat_business_hours_am').val();
+    var sat_business_hours_pm = $('#sat_business_hours_pm').val();
+
+    var tue_business_hours_am = $('#tue_business_hours_am').val();
+    var tue_business_hours_pm = $('#tue_business_hours_pm').val();
+
+    /*var n = $("input[name^= 'onboard_staff_name']").length;
+    var array = $("input[name^='onboard_staff_name']");*/
+    /*for(i=0; i < n; i++) {
+
+       card_value = array.eq(i).val(); 
+       //  it'd be .eq(i).val(); (if you wanted the text value)
+       alert(card_value);
+    }*/
+    /*var n = $("input[name^= 'onboard_staff_email']").length;
+    var array = $("input[name^='onboard_staff_email']");
+
+    for(i=0; i < n; i++) {
+
+       card_value = array.eq(i).val(); 
+       //  it'd be .eq(i).val(); (if you wanted the text value)
+       alert(card_value);
+    }*/
+    var onboard_staff_name = [];
+    $("input[name^='onboard_staff_name']").each(function() {
+        console.log($(this).val());
+        onboard_staff_name.push($(this).val());
+    });
+    //onboard_staff_name= JSON.stringify(onboard_staff_name);
+
+    var onboard_staff_email = [];
+    $("input[name^='onboard_staff_email']").each(function() {
+        console.log($(this).val());
+        onboard_staff_email.push($(this).val());
+    });
+    //onboard_staff_email= JSON.stringify(onboard_staff_email);
+
+    var service_name = [];
+    $("input[name^='service_name']").each(function() {
+        console.log($(this).val());
+        service_name.push($(this).val());
+    });
+    //service_name= JSON.stringify(service_name);
+
+    /*var service_duration = [];
+    $("#service_duration :selected").each(function() {
+        console.log($(this).val());
+        service_duration.push($(this).val());
+    });
+    service_duration= JSON.stringify(service_duration);*/
+
+    var service_duration = [];
+    $.each($(".service_duration option:selected"), function(){   
+        console.log($(this).val());     
+        service_duration.push($(this).val());
+    });
+
+    var service_price = [];
+    $("input[name^='service_price']").each(function() {
+        console.log($(this).val());
+        service_price.push($(this).val());
+    });
+    //service_price= JSON.stringify(service_price);
+
+    //alert('sss');
+    //var formData = $("input[name^='onboard_staff_email']").serialize();
+    
+
+    $.ajax({
+            type:'POST',
+            url:'/serviceOnboard',
+            data: {_token:CSRF_TOKEN, sun_business_hours_am:sun_business_hours_am, sun_business_hours_pm:sun_business_hours_pm, mon_business_hours_am:mon_business_hours_am, mon_business_hours_pm:mon_business_hours_pm, tue_business_hours_am:tue_business_hours_am, tue_business_hours_pm:tue_business_hours_pm, wed_business_hours_am:wed_business_hours_am, wed_business_hours_pm:wed_business_hours_pm, thu_business_hours_am:thu_business_hours_am, thu_business_hours_pm:thu_business_hours_pm, fri_business_hours_am:fri_business_hours_am, fri_business_hours_pm:fri_business_hours_pm, sat_business_hours_am:sat_business_hours_am, sat_business_hours_pm:sat_business_hours_pm, onboard_staff_name:onboard_staff_name, onboard_staff_email:onboard_staff_email, service_name:service_name, service_duration:service_duration, service_price:service_price },
+            dataType:'json',
+            success:function(data){
+                console.log(data.success);
+                console.log(data.message);
+                console.log(data.value);
+                if(data.success == 'ok'){
+                    console.log('ok, success');
+                }else{
+                    console.log('error return');
+                }
+               
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            } 
+        });
+    
+    return false;
+}
+</script>
+<!-- staff add end -->
+
+
+<!-- google map show code here -->
+<script>
+    var address;
+    var lat;
+    var lng;
+    var postal_code;
+        function initialize() {
+
+          var input = document.getElementById('address');
+          var autocomplete = new google.maps.places.Autocomplete(input);
+
+            // Set initial restrict to the greater list of countries.
+            autocomplete.setComponentRestrictions(
+            {'country': ['au','bd']});
+
+            // Specify only the data fields that are needed.
+            autocomplete.setFields(
+                ['address_components', 'geometry', 'icon', 'name', 'formatted_address']);
+
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+
+                var place = autocomplete.getPlace();
+                var address_components = place.address_components;
+
+                
+                /*document.getElementById('location-snap').innerHTML = place.formatted_address;
+                document.getElementById('lat-span').innerHTML = place.geometry.location.lat();
+                document.getElementById('lon-span').innerHTML = place.geometry.location.lng();*/
+
+                var address = place.formatted_address
+                var lat     = place.geometry.location.lat();
+                var lng     = place.geometry.location.lng();
+
+                
+
+                var result = place.address_components;
+                for (var i = 0; i < result.length; i++ ) {
+                    if (result[i].types == "postal_code"){
+                        var postal_code = result[i].long_name
+                        
+                    }
+                }
+
+                console.log(address);
+                console.log(lat);
+                console.log(lng);
+                console.log(postal_code);
+
+               /* document.getElementById('postal-code').innerHTML = postal_code;*/
+
+                var map_options = {
+                    center: new google.maps.LatLng(lat, lng),
+                    zoom: 11,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                var map = new google.maps.Map(document.getElementById("map_canvas"), map_options);
+
+
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+function get_professions(){
+    var profession_id ='<option value="">...Select Profession Type...</option>';
+    var industry_id = $('#industry_id').val();
+    console.log(industry_id)
+
+    if(industry_id != ''){
+        $.ajax({
+            url : '{{url('profession/getProfession')}}',
+            type: 'get',
+            data: {'industry_id':industry_id},
+            success: function (data) {
+                console.log(data);
+                  for (var i = 0; i < data.length; i ++){
+                  profession_id = profession_id + '<option value="'+data[i].id+'">'+data[i].name+'</option>'
+                    }
+                   document.getElementById("profession_id").innerHTML = profession_id;
+            }
+        });
+    }
+    /*var profession_id = $('#profession_id').val();
+    console.log('profession id here');
+    console.log(profession_id);*/
+}
+
+
+//jQuery(document).ready(function() {
     
     /*$(".open1").click(function() {
       var phone_number = $("#phone_number").val();
@@ -292,6 +474,8 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
+   
+   
     $.backstretch("assets/img/backgrounds/1.jpg");
     
     $('#top-navbar-1').on('shown.bs.collapse', function(){
@@ -315,7 +499,36 @@ jQuery(document).ready(function() {
         var parent_fieldset = $(this).parents('fieldset');
         var next_step = true;
 
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        var industry_id = $('#industry_id').val();
+        var profession_id = $('#profession_id').val();
+        var country_with_code = $("#country_with_code").val();
         var phone_number = $("#phone_number").val();
+        var business_name = $("#business_name").val();
+        var web_url = $('#web_url').val();
+        //var address = $('#address').val();
+        var present_number_address = $('#present_number_address:checked').val();
+        var user_id = $('#user_id').val();
+        var address = $('#address').val();
+
+        console.log('google map value');
+        console.log(address);
+        console.log(lat);
+        console.log(lng);
+        console.log(postal_code);
+        console.log('profession id here');
+        console.log(profession_id);
+        console.log('other value');
+        console.log(address);
+        console.log(industry_id)
+        console.log(profession_id)
+        console.log(country_with_code)
+        console.log(phone_number)
+        console.log(business_name)
+        console.log(web_url)
+        console.log(present_number_address)
+        console.log(user_id)
         
         if(!$.isNumeric(phone_number)){
             //alert('Please enter your phone_number.');
@@ -323,42 +536,54 @@ jQuery(document).ready(function() {
              $('.phone_number_error').html('<span style="color:red;">Please enter phone number</p>');
             next_step = false;
         }
-        /*if ( phone_number.length < 6 ){
-            //alert('Please enter your phone_number.');
-            $('#phone_number').focus();
-             $('.phone_number_error').html('<span style="color:red;">Please enter minimum six number.</p>');
-            next_step = false;
-        }*/
-        
-        if( next_step ) {
-            parent_fieldset.fadeOut(400, function() {
-                $(this).next().fadeIn();
-            });
-        }
-        
-    }); 
-    // next step
-    $('.registration-form .btn-next2').on('click', function() {
-        var parent_fieldset = $(this).parents('fieldset');
-        var next_step = true;
-
-        var check_value = $('input[type="checkbox"]:checked').length;
-        console.log(check_value); 
-
-        if(check_value > 0){
-          alert(check_value);
-          next_step = true;
-        } 
         else{
-            alert("error not any checked options");
+            $('.phone_number_error').html('<span style="display:none"/>')
+        }
+        if(industry_id === ''){
+            //alert('Please enter your phone_number.');
+            $('#industry_id').focus();
+             $('.error_induestry_id').html('<span style="color:red;">Please select industry type</p>');
             next_step = false;
         }
-            /*if ( phone_number.length < 6 ){
-                //alert('Please enter your phone_number.');
-                $('#phone_number').focus();
-                 $('.phone_number_error').html('<span style="color:red;">Please enter minimum six number.</p>');
-                next_step = false;
-            }*/
+        else{
+            $('.error_induestry_id').html('<span style="display:none"/>')
+        }
+        if(profession_id === ''){
+            //alert('Please enter your phone_number.');
+            $('#profession_id').focus();
+             $('.error_profession_id').html('<span style="color:red;">Please select profession type</p>');
+            next_step = false;
+        }
+        else{
+            $('.error_profession_id').html('<span style="display:none"/>')
+        }
+
+        var web_url = $('#web_url').val();
+        url_validate = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        if(!url_validate.test(web_url)){
+           //alert('error');
+           $('#web_url').focus();
+             $('.error_web_url').html('<span style="color:red;">Please enter valid URL</p>');
+            next_step = false;
+        }
+        else{
+           $('.error_web_url').html('<span style="display:none"/>')
+        }
+        
+        /*$.ajax({
+            type:'POST',
+            url:'{{url("/business")}}',
+            data:{_token:CSRF_TOKEN, industry_id:industry_id, profession_id:profession_id, country_with_code:country_with_code, phone_number:phone_number, business_name:business_name, web_url:web_url, address:address, user_id:user_id },
+            dataType:'json',
+            success:function(data){
+                console.log(data.success);
+                console.log(data.message);
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });*/
         
         if( next_step ) {
             parent_fieldset.fadeOut(400, function() {
@@ -367,6 +592,204 @@ jQuery(document).ready(function() {
         }
         
     });
+
+    // next step
+    $('.registration-form .btn-next2').on('click', function() {
+        var parent_fieldset = $(this).parents('fieldset');
+        var next_step = true;
+
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        var time_zone = $('#time_zone').val();
+        var time_format = $('#time_format').val();
+        var start_weak_on = $('#start_weak_on').val();
+
+        console.log(time_zone);
+        console.log(time_format);
+        console.log(start_weak_on);
+
+        /*$.ajax({
+            type:'POST',
+            url:'{{url("/timezone")}}',
+            data:{_token:CSRF_TOKEN, user_id:user_id, time_zone:time_zone, time_format:time_format, start_weak_on:start_weak_on },
+            dataType:'json',
+            success:function(data){
+                console.log(data.success);
+                console.log(data.message);
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });*/
+        
+        if( next_step ) {
+            parent_fieldset.fadeOut(400, function() {
+                $(this).next().fadeIn();
+            });
+        }
+        
+    });
+    // next step
+    $('.registration-form .btn-next3').on('click', function() {
+        var parent_fieldset = $(this).parents('fieldset');
+        var next_step = true;
+
+        var service_name = [];
+        $("input[name^='service_name']").each(function() {
+            console.log($(this).val());
+            service_name.push($(this).val());
+        });
+        
+        var service_duration = [];
+        $.each($(".service_duration option:selected"), function(){   
+            console.log($(this).val());     
+            service_duration.push($(this).val());
+        });
+
+        var service_price = [];
+        $("input[name^='service_price']").each(function() {
+            console.log($(this).val());
+            service_price.push($(this).val());
+        });
+        //alert('modal 3');
+        
+        if( next_step ) {
+            parent_fieldset.fadeOut(400, function() {
+                $(this).next().fadeIn();
+            });
+        }
+        
+    });
+    // next step
+    $('.registration-form .btn-next4').on('click', function() {
+        var parent_fieldset = $(this).parents('fieldset');
+        var next_step = true;
+
+        var onboard_staff_name = [];
+        $("input[name^='onboard_staff_name']").each(function() {
+            console.log($(this).val());
+            onboard_staff_name.push($(this).val());
+        });
+        //onboard_staff_name= JSON.stringify(onboard_staff_name);
+
+        var onboard_staff_email = [];
+        $("input[name^='onboard_staff_email']").each(function() {
+            console.log($(this).val());
+            onboard_staff_email.push($(this).val());
+        });
+        //alert('modal 4');
+        
+        if( next_step ) {
+            parent_fieldset.fadeOut(400, function() {
+                $(this).next().fadeIn();
+            });
+        }
+        
+    });
+
+    // next step
+    $('.registration-form .btn-next5').on('click', function() {
+        var parent_fieldset = $(this).parents('fieldset');
+        var next_step = true;
+
+        //alert('modal set hours');
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+        var sun_business_hours_am = $('#sun_business_hours_am').val();
+        var sun_business_hours_pm = $('#sun_business_hours_pm').val();
+
+        var mon_business_hours_am = $('#mon_business_hours_am').val();
+        var mon_business_hours_pm = $('#mon_business_hours_pm').val();
+
+        var tue_business_hours_am = $('#tue_business_hours_am').val();
+        var tue_business_hours_pm = $('#tue_business_hours_pm').val();
+
+        var wed_business_hours_am = $('#wed_business_hours_am').val();
+        var wed_business_hours_pm = $('#wed_business_hours_pm').val();
+
+        var thu_business_hours_am = $('#thu_business_hours_am').val();
+        var thu_business_hours_pm = $('#thu_business_hours_pm').val();
+
+        var fri_business_hours_am = $('#fri_business_hours_am').val();
+        var fri_business_hours_pm = $('#fri_business_hours_pm').val();
+
+        var sat_business_hours_am = $('#sat_business_hours_am').val();
+        var sat_business_hours_pm = $('#sat_business_hours_pm').val();
+
+        var tue_business_hours_am = $('#tue_business_hours_am').val();
+        var tue_business_hours_pm = $('#tue_business_hours_pm').val();
+        console.log(sat_business_hours_am);
+        console.log(sat_business_hours_pm);
+       /* $.ajax({
+            type:'POST',
+            url:'/serviceOnboard',
+            data: {_token:CSRF_TOKEN, sun_business_hours_am:sun_business_hours_am, sun_business_hours_pm:sun_business_hours_pm, mon_business_hours_am:mon_business_hours_am, mon_business_hours_pm:mon_business_hours_pm, tue_business_hours_am:tue_business_hours_am, tue_business_hours_pm:tue_business_hours_pm, wed_business_hours_am:wed_business_hours_am, wed_business_hours_pm:wed_business_hours_pm, thu_business_hours_am:thu_business_hours_am, thu_business_hours_pm:thu_business_hours_pm, fri_business_hours_am:fri_business_hours_am, fri_business_hours_pm:fri_business_hours_pm, sat_business_hours_am:sat_business_hours_am, sat_business_hours_pm:sat_business_hours_pm, onboard_staff_name:onboard_staff_name, onboard_staff_email:onboard_staff_email, service_name:service_name, service_duration:service_duration, service_price:service_price },
+            dataType:'json',
+            success:function(data){
+                console.log(data.success);
+                console.log(data.message);
+                console.log(data.value);
+                if(data.success == 'ok'){
+                    console.log('ok, success');
+                }else{
+                    console.log('error return');
+                }
+               
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            } 
+        });*/
+        if( next_step ) {
+            parent_fieldset.fadeOut(400, function() {
+                $(this).next().fadeIn();
+            });
+        }
+        
+    });
+    // next step
+    $('.registration-form .btn-next6').on('click', function() {
+        var parent_fieldset = $(this).parents('fieldset');
+        var next_step = true;
+
+        var check_value = $('input[type="checkbox"]:checked').length;
+        console.log(check_value); 
+
+        if(check_value > 0){
+          //alert(check_value);
+          next_step = true;
+        } 
+        else{
+            alert("Please Checked at least one.");
+            next_step = false;
+        }
+
+        var manage_client_records = $('#manage_client_records:checked').val();
+        var send_email_sms_promotions = $('#send_email_sms_promotions:checked').val();
+        var send_email_sms_reminders = $('#send_email_sms_reminders:checked').val();
+        var add_online_scheduling = $('#add_online_scheduling:checked').val();
+        var invoices_estimates = $('#invoices_estimates:checked').val();
+        var accept_payments = $('#accept_payments:checked').val();
+
+        console.log(manage_client_records);
+        console.log(send_email_sms_promotions);
+        console.log(send_email_sms_reminders);
+        console.log(add_online_scheduling);
+        console.log(invoices_estimates);
+        console.log(accept_payments);
+        //alert('modal 5');
+        
+        if( next_step ) {
+            parent_fieldset.fadeOut(400, function() {
+                $(this).next().fadeIn();
+            });
+        }
+        
+    });
+
+
+    
     
     // previous step
     $('.registration-form .btn-previous').on('click', function() {
@@ -376,7 +799,7 @@ jQuery(document).ready(function() {
     });
     
     // submit
-    $(".open3").click(function() {
+    /*$(".open3").click(function() {
         
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         
@@ -398,8 +821,8 @@ jQuery(document).ready(function() {
         var invoices_estimates = $('#invoices_estimates:checked').val();
         var accept_payments = $('#accept_payments:checked').val();
 
-        alert(industry_id);
-        alert(manage_client_records);
+        //alert(industry_id);
+        //alert(manage_client_records);
 
          $.ajax({
                 type:'POST',
@@ -417,24 +840,113 @@ jQuery(document).ready(function() {
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
                 }
+            }); 
+    });*/
+
+     $(".open3").click(function(e) {
+
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        
+        var industry_id = $('#industry_id').val();
+        var profession_id = $('#profession_id').val();
+        var country_with_code = $("#country_with_code").val();
+        var phone_number = $("#phone_number").val();
+        var business_name = $("#business_name").val();
+        var web_url = $('#web_url').val();
+        //var address = $('#address').val();
+        var present_number_address = $('#present_number_address:checked').val();
+        var user_id = $('#user_id').val();
+        var address = $('#address').val();
+
+        var time_zone = $('#time_zone').val();
+        var time_format = $('#time_format').val();
+        var start_weak_on = $('#start_weak_on').val();
+
+        var service_name = [];
+        $("input[name^='service_name']").each(function() {
+            console.log($(this).val());
+            service_name.push($(this).val());
+        });
+        
+        var service_duration = [];
+        $.each($(".service_duration option:selected"), function(){   
+            console.log($(this).val());     
+            service_duration.push($(this).val());
+        });
+
+        var service_price = [];
+        $("input[name^='service_price']").each(function() {
+            console.log($(this).val());
+            service_price.push($(this).val());
+        });
+
+        var onboard_staff_name = [];
+        $("input[name^='onboard_staff_name']").each(function() {
+            console.log($(this).val());
+            onboard_staff_name.push($(this).val());
+        });
+        //onboard_staff_name= JSON.stringify(onboard_staff_name);
+
+        var onboard_staff_email = [];
+        $("input[name^='onboard_staff_email']").each(function() {
+            console.log($(this).val());
+            onboard_staff_email.push($(this).val());
+        });
+
+        var sun_business_hours_am = $('#sun_business_hours_am').val();
+        var sun_business_hours_pm = $('#sun_business_hours_pm').val();
+
+        var mon_business_hours_am = $('#mon_business_hours_am').val();
+        var mon_business_hours_pm = $('#mon_business_hours_pm').val();
+
+        var tue_business_hours_am = $('#tue_business_hours_am').val();
+        var tue_business_hours_pm = $('#tue_business_hours_pm').val();
+
+        var wed_business_hours_am = $('#wed_business_hours_am').val();
+        var wed_business_hours_pm = $('#wed_business_hours_pm').val();
+
+        var thu_business_hours_am = $('#thu_business_hours_am').val();
+        var thu_business_hours_pm = $('#thu_business_hours_pm').val();
+
+        var fri_business_hours_am = $('#fri_business_hours_am').val();
+        var fri_business_hours_pm = $('#fri_business_hours_pm').val();
+
+        var sat_business_hours_am = $('#sat_business_hours_am').val();
+        var sat_business_hours_pm = $('#sat_business_hours_pm').val();
+
+        var tue_business_hours_am = $('#tue_business_hours_am').val();
+        var tue_business_hours_pm = $('#tue_business_hours_pm').val();
+
+        var manage_client_records = $('#manage_client_records:checked').val();
+        var send_email_sms_promotions = $('#send_email_sms_promotions:checked').val();
+        var send_email_sms_reminders = $('#send_email_sms_reminders:checked').val();
+        var add_online_scheduling = $('#add_online_scheduling:checked').val();
+        var invoices_estimates = $('#invoices_estimates:checked').val();
+        var accept_payments = $('#accept_payments:checked').val();
+
+         $.ajax({
+                type:'POST',
+                url:'{{url("/business")}}',
+                data:{_token:CSRF_TOKEN, industry_id:industry_id, profession_id:profession_id, country_with_code:country_with_code, phone_number:phone_number, business_name:business_name, web_url:web_url, address:address, user_id:user_id, time_zone:time_zone, time_format:time_format, start_weak_on:start_weak_on, service_name:service_name, service_duration:service_duration, service_price:service_price, onboard_staff_name:onboard_staff_name, onboard_staff_email:onboard_staff_email, sun_business_hours_am:sun_business_hours_am, sun_business_hours_pm:sun_business_hours_pm, mon_business_hours_am:mon_business_hours_am, mon_business_hours_pm:mon_business_hours_pm, tue_business_hours_am:tue_business_hours_am, tue_business_hours_pm:tue_business_hours_pm, wed_business_hours_am:wed_business_hours_am, wed_business_hours_pm:wed_business_hours_pm, thu_business_hours_am:thu_business_hours_am, thu_business_hours_pm:thu_business_hours_pm, fri_business_hours_am:fri_business_hours_am, fri_business_hours_pm:fri_business_hours_pm, sat_business_hours_am:sat_business_hours_am, sat_business_hours_pm:sat_business_hours_pm, manage_client_records:manage_client_records, send_email_sms_promotions:send_email_sms_promotions, send_email_sms_reminders:send_email_sms_reminders, add_online_scheduling:add_online_scheduling, invoices_estimates:invoices_estimates, accept_payments:accept_payments },
+                dataType:'json',
+                success:function(data){
+                    console.log(data.success);
+                    console.log(data.message);
+                    console.log(data.value);
+                    if(data.success == 'ok'){
+                        window.location = '/dashboard/onboarding';
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
             });
 
-
-        /*$(this).find('input[type="text"], input[type="password"], textarea').each(function() {
-            alert('hi modal');
-            if( $(this).val() == "" ) {
-                e.preventDefault();
-                $(this).addClass('input-error');
-            }
-            else {
-                $(this).removeClass('input-error');
-            }
-        });*/
         
     });
     
     
-});
+//});
 
     </script>
 

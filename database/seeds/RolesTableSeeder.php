@@ -12,16 +12,16 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert(
-            ['role' => 'Root User', 'permission' => 'root']
+            ['slug' => md5(uniqid(time())), 'role' => 'Root User', 'permission' => 'root']
         );
         DB::table('roles')->insert([
-            ['role' => 'Admin', 'permission' => 'admin']
+            ['slug' => md5(uniqid(time())), 'role' => 'Business Admin', 'permission' => 'business_admin']
         ]);
         DB::table('roles')->insert([
-            ['role' => 'staff', 'permission' => 'staff']
+            ['slug' => md5(uniqid(time())), 'role' => 'staff', 'permission' => 'staff']
         ]);
         DB::table('roles')->insert([
-            ['role' => 'user', 'permission' => 'user']
+            ['slug' => md5(uniqid(time())), 'role' => 'user', 'permission' => 'user']
         ]);
       
     }

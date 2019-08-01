@@ -15,7 +15,7 @@
             </div>
         </div>
         <a href="{{ route('dashboard') }}" style="display: inline-block;float: none; width: 157px;height: 58px;">
-            <img class="" src="{{ asset('/files/assets/images/miynlogo_dash_up.png') }}" style="display: inline-block;float: none; width: 75px;height: 58px;" alt="Theme-Logo" />
+            <img class="" src="{{ asset('/files/assets/images/miynlogo_dash_up.png') }}" style="display: inline-block;float: none; width: 75px;height: 58px;" alt="miyn-Logo" />
             <!-- <img class="img-fluid" src="{{ asset('/files/assets/images/logo.png') }}" alt="Theme-Logo" /> -->
         </a>
         <a class="mobile-options waves-effect waves-light">
@@ -44,7 +44,7 @@
             </li>
         </ul>
         <ul class="nav-right">
-            <li class="header-notification">
+            <!-- <li class="header-notification">
                 <a href="javascript:void(0)" class="waves-effect waves-light">
                     <i class="ti-bell"></i>
                     <span class="badge bg-c-red"></span>
@@ -56,57 +56,42 @@
                     </li>
                     <li class="waves-effect waves-light">
                         <div class="media">
-                            <img class="d-flex align-self-center img-radius" src="../files/assets/images/avatar-2.jpg" alt="Generic placeholder image">
+                            <img class="d-flex align-self-center img-radius" src="{{asset('/files/assets/images/miynlogo.png')}}" alt="Generic placeholder image">
                             <div class="media-body">
-                                <h5 class="notification-user">John Doe</h5>
-                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                <h5 class="notification-user">From MIYN</h5>
+                                <p class="notification-msg">This notification come form miyn</p>
                                 <span class="notification-time">30 minutes ago</span>
                             </div>
                         </div>
                     </li>
-                    <li class="waves-effect waves-light">
-                        <div class="media">
-                            <img class="d-flex align-self-center img-radius" src="../files/assets/images/avatar-4.jpg" alt="Generic placeholder image">
-                            <div class="media-body">
-                                <h5 class="notification-user">Joseph William</h5>
-                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                <span class="notification-time">30 minutes ago</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="waves-effect waves-light">
-                        <div class="media">
-                            <img class="d-flex align-self-center img-radius" src="../files/assets/images/avatar-3.jpg" alt="Generic placeholder image">
-                            <div class="media-body">
-                                <h5 class="notification-user">Sara Soudein</h5>
-                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                <span class="notification-time">30 minutes ago</span>
-                            </div>
-                        </div>
-                    </li>
+                   
                 </ul>
-            </li>
-            <li class="">
+            </li> -->
+            @if(Auth::user()->role->permission === 'root')
+            <!-- <li class="">
                 <a href="javascript:void(0)" class="displayChatbox waves-effect waves-light">
                     <i class="ti-comments"></i>
                     <span class="badge bg-c-green"></span>
                 </a>
-            </li>
+            </li> -->
+            @endif
             <li class="user-profile header-notification">
                 <a href="javascript:void(0)" class="waves-effect waves-light">
                     <img src="{{asset('/files/assets/images/avatar-blank.jpg')}}" class="img-radius" alt="User-Profile-Image">
-                    <span>{{Auth::user()->name}}</span>
+                    <span>{{ucfirst(Auth::user()->first_name)}}</span>
                     <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">
+                    
                     <li class="waves-effect waves-light">
                         <a href="javascript:void(0)">
-                            <i class="ti-settings"></i> Settings
+                            <i class="ti-user"></i> Profile
                         </a>
                     </li>
+
                     <li class="waves-effect waves-light">
-                        <a href="user-profile.html">
-                            <i class="ti-user"></i> Profile
+                        <a href="{{ route('password.change') }}">
+                            <i class="ti-settings"></i> Edit Password
                         </a>
                     </li>
 

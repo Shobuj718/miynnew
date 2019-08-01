@@ -15,8 +15,11 @@ class CreateIndustriesTable extends Migration
     {
         Schema::create('industries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('slug')->nullable();
+            $table->string('name')->nullable();
+            $table->string('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

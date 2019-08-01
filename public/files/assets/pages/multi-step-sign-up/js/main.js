@@ -215,7 +215,7 @@ function submitServiceValue(){
 	});
 	//service_price= JSON.stringify(service_price);
 
-	alert('sss');
+	//alert('sss');
 	//var formData = $("input[name^='onboard_staff_email']").serialize();
 	
 

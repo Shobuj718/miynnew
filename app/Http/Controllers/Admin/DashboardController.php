@@ -11,7 +11,10 @@ use App\Models\Staff;
 use App\Models\BusinessHour;
 use App\Models\OnboardStaff;
 use App\Models\OnboardService;
-use App\User;
+use App\Models\User;
+use App\Models\Industry;
+use App\Models\Profession;
+use App\Models\Role;
 
 
 class DashboardController extends Controller
@@ -27,18 +30,32 @@ class DashboardController extends Controller
         $user = Auth::user();
         $login_id =  Auth::user()->id;
 
-
-        $businessProfileId = BusinessProfile::where('user_id', $login_id)->first();
-        //var_dump($businessProfileId);
-        if($businessProfileId == NULL){
-            $businessId = 0;
-        }else{
-            $businessId = $businessProfileId->status;
-        }
+        /*$role_id = Auth::user()->role_id;
+        $roles = Role::where('id', $role_id)->first();*/
+        $role = Auth::user()->role->role;
+     
       
-        return view('admin.pages.dashboard', compact('businessId'));
+        return view('admin.pages.dashboard', compact('role'));
         //return view('admin.onboarding.index', compact('user_type'));
 
+    }
+
+    public function dashboardCheck(){
+        $industries = Industry::all();
+        $professions = Profession::all();
+        //dd($data);
+        return view('admin.onboarding.onboard_test', compact('industries', 'professions'));
+    }
+
+    public function getProfession(Request $request){
+        //dd($request->all());
+        $data = Profession::where('industry_id', $request->industry_id)->get();
+        return $data;
+    }
+
+     public function getOnboardStaffEmail(Request $request){
+        $onbardStaffEmail = OnboardStaff::where('id', $request->staff_name)->where('status', 1)->first();
+        return $onbardStaffEmail;
     }
 
     public function onboardingDashboard(){
@@ -49,11 +66,15 @@ class DashboardController extends Controller
         $business_data = BusinessProfile::where('user_id', $user_auth_id)->first();
         $staff_data = Staff::where('user_id', $user_auth_id)->first();
         $OnboardService = OnboardService::where('user_id', $user_auth_id)->first();
+        $onboardService2 = OnboardService::where('user_id', $user_auth_id)->get();
+        $onboardStaff = OnboardStaff::where('user_id', $user_auth_id)->get();
         
         $business_profile_status = $business_data->status;
-        
+        //$onboardStaff = null;
         //dd($staff_data);
-       // dd($business_profile_status);
+        // dd($business_profile_status);
+        
+
 
         if($staff_data === null){
             $staff_status =  0;
@@ -66,7 +87,7 @@ class DashboardController extends Controller
             $OnboardService = 1;
         }
 
-        return view('admin.onboarding.index', compact('business_profile_status', 'staff_status', 'OnboardService'));
+        return view('admin.onboarding.index', compact('business_profile_status', 'staff_status', 'OnboardService', 'onboardService2', 'onboardStaff'));
 
     }
     
@@ -76,20 +97,39 @@ class DashboardController extends Controller
     }
 
     public function staffAdd(Request $request){
+        //dd($request->all());
 
         $staff = new Staff;
 
         $user = Auth::user();
+        /*foreach ($request->staff_provide_service as $value) {
+            $staff->slug    = md5(uniqid(time()));
+            $staff->user_id = $user->id;
+            $staff->staff_name = $request->staff_name;
+            $staff->staff_email = $request->staff_email;
+            $staff->staff_role = $request->staff_role;
 
-        $staff->slug    = md5(uniqid(time()));
-        $staff->user_id = $user->id;
-        $staff->staff_name = $request->staff_name;
-        $staff->staff_email = $request->staff_email;
-        $staff->staff_role = $request->staff_role;
-        $staff->staff_provide_service = $request->staff_provide_service;
-        $staff->send_email_with_inst = $request->send_email_with_inst;
-        $staff->save();
+            
+                $staff->staff_provide_service = $value;
+         
+            //$staff->staff_provide_service = $request->staff_provide_service;
+            $staff->send_email_with_inst = $request->send_email_with_inst;
+        }*/
+        foreach ($request->staff_provide_service as $data) {
+            $onboard_staff_data[] = [
+                'slug'    => md5(uniqid(time())),
+                'user_id' => $user->id,
+                'staff_name' => $request->staff_name,
+                'staff_email' => $request->staff_email,
+                'staff_role' => $request->staff_role,
+                'staff_provide_service' => $data,
+                'created_at' => NOW(),
+            ];
+        }
 
+        DB::table('staff')->insert($onboard_staff_data);
+
+            //$staff->save();
         $response = [
             'success' => 'ok',
             'message' => "Business profile created",
@@ -208,10 +248,12 @@ class DashboardController extends Controller
 
         $response = [
             'success' => 'ok',
-            'message' => "Services created",
-            'value' => $request->all()
+            'message' => "Services created"
+            
         ];
         return response()->json($response);
     }
+
+
 
 }

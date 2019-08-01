@@ -8,6 +8,4 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Staff extends Model
 {
     use SoftDeletes;
-
-    
 }

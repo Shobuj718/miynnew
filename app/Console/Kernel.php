@@ -13,7 +13,11 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        //Commands\DemoCron::class,
+        'App\Console\Commands\SendBookingSms',
+        'App\Console\Commands\AppointmentReminder',
+        'App\Console\Commands\SendConfirmSmsToUser',
+        //'App\Console\Commands\Log\ClearLogFile',
     ];
 
     /**
@@ -26,6 +30,16 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        //$schedule->command('demo:cron')
+        //        ->everyMinute();
+        $schedule->command('sendbookingsms:users')
+            ->everyMinute();
+        $schedule->command('sendconfirmedsmstouser:users')
+            ->everyMinute();
+        $schedule->command('appointment:reminders')
+            ->everyMinute();
+        //$schedule->command('log:clear')
+            //->everyTenMinutes();
     }
 
     /**

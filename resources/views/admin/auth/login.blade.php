@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>MIYN-Login</title>
+    <title>MIYN-Login Page</title>
    
       <!-- Meta -->
       <meta charset="utf-8">
@@ -14,7 +14,7 @@
       <meta name="author" content="Phoenixcoded" />
       <!-- Favicon icon -->
 
-      <link rel="icon" href="{{asset('/files/assets/images/favicon.ico')}}" type="image/x-icon">
+      <link rel="icon" href="{{asset('/files/assets/images/miynlogo.png')}}" type="image/x-icon">
       <!-- Google font-->     
       <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
       <!-- Required Fremwork -->
@@ -105,7 +105,7 @@
                                         <h3 class="text-center txt-primary">Sign In</h3>
                                     </div>
                                 </div>
-                                <div class="row m-b-20">
+                                <!--<div class="row m-b-20">
                                     <div class="col-md-6">
                                         <button class="btn btn-facebook m-b-20 btn-block"><i class="icofont icofont-social-facebook"></i>facebook</button>
                                     </div>
@@ -113,7 +113,7 @@
                                         <button class="btn btn-twitter m-b-20 btn-block"><i class="icofont icofont-social-twitter"></i>twitter</button>
                                     </div>
                                 </div>
-                                <p class="text-muted text-center p-b-5">Sign in with your regular account</p>
+                                <p class="text-muted text-center p-b-5">Sign in with your regular account</p>-->
                                 <div class="form-group form-primary">
                                     <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     <span class="form-bar"></span>

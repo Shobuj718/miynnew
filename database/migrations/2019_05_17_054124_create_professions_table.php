@@ -15,9 +15,12 @@ class CreateProfessionsTable extends Migration
     {
         Schema::create('professions', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('slug')->nullable();
             $table->integer('industry_id')->unsigned();
-            $table->string('name');
+            $table->string('name')->nullable();
+            $table->string('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

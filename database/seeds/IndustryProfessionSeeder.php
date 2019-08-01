@@ -54,13 +54,15 @@ class IndustryProfessionSeeder extends Seeder
 
         foreach($industryProfessionList as $industry => $professions){
             $ind = new \App\Models\Industry;
+            $ind->slug = md5(uniqid(time()));
             $ind->name = $industry;
             $ind->save();
 
             foreach($professions as $profession){
                 $prof = new \App\Models\Profession;
-                $prof->name = $profession;
+                $prof->slug = md5(uniqid(time()));
                 $prof->industry_id = $ind->id;
+                $prof->name = $profession;
                 $prof->save();
             }
         }

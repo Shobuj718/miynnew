@@ -1,8 +1,9 @@
 <?php
-    //if( $user_type == 'user' && 1===1){
-    if($businessId !== 1){
-      
-    echo "<script>window.location = '/dashboard/onboardings'</script>";
+    if( $role == 'user'){
+        echo "<script>window.location = '/booking-client'</script>";
+    }
+    else{
+        echo "<script>window.location = '/settings'</script>";
     }
 ?>
 
@@ -13,7 +14,8 @@
         <div class="row align-items-center">
             <div class="col-md-8">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Dashboard</h5>
+                    <h5 class="m-b-10">DASHBOARD</h5>
+                    <p class="m-b-0">Welcome to MIYN dashboard</p>
                 </div>
             </div>
             
@@ -23,6 +25,24 @@
 @endsection
 @section('main_content')
 
-<h1>Dashboadr Page</h1>
+<div class="page-body">
+<!-- Basic Form Inputs card start -->
+    <div class="card">
+        <div class="card-header">
+        @if (session('success'))
+          <div class="alert alert-success background-success">
+                <strong>{{ session('success')}}</strong>
+           </div>
+        @endif
+        @if (session('error'))
+           <div class="alert alert-danger background-danger">
+               {{ session('error')}}
+           </div>
+        @endif
+        </div>
+    </div>
+</div>
+
+<h1>Dashboard information page</h1>
 
 @endsection
