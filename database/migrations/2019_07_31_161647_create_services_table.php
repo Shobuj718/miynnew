@@ -19,6 +19,7 @@ class CreateServicesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('business_id')->unsigned();
             $table->integer('category_id')->unsigned();
+            $table->integer('calendar_setting_id')->unsigned();
             $table->string('name')->nullable();
             $table->string('fee')->nullable();
             $table->text('description')->nullable();

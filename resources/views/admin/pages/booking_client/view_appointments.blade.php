@@ -187,6 +187,17 @@
                 <h5>Appointments</h5>
             </div>
         </div>
+        
+        @if($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
         <div class="card-block booking-container">
             <div class="booking-content"> 
                 <div class="booking-right booking-info">
@@ -214,7 +225,7 @@
                                     <div class="msg_history">
                                     @foreach($messages as $message)
 
-                                    @if($message->sender_id == 6)
+                                    @if($message->role_id == 2)
                                     <div class="outgoing_msg">
                                         <div class="sent_msg">
                                           <p>{{ $message->body }}</p>

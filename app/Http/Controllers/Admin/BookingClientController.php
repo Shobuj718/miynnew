@@ -45,12 +45,12 @@ class BookingClientController extends Controller
 
         if($staff){
             $staff_id = $staff->staff_id;
-            $booking = Booking::with('category','service')->where('staff_id', $staff_id)->where('status', 'upcoming')->orderBy('created_at', 'desc')->get();
+            $booking = Booking::with('category','service')->where('staff_id', $staff_id)->where('status', '0')->orderBy('created_at', 'desc')->get();
             return view('admin.pages.booking_client.index', compact('booking'));
         }
         elseif($client){
             $client_id = $client->client_id;
-            $booking = Booking::with('category','service')->where('client_id', $client_id)->where('status', 'upcoming')->orderBy('created_at', 'desc')->get();
+            $booking = Booking::with('category','service')->where('client_id', $client_id)->where('status', '0')->orderBy('created_at', 'desc')->get();
             return view('admin.pages.client_single.index', compact('booking'));
         }
         /*else{
@@ -61,7 +61,7 @@ class BookingClientController extends Controller
         }*/
         else{
             $staff_id = Auth::user()->id;
-            $booking = Booking::with('category','service')->where('staff_id', $staff_id)->where('status', 'upcoming')->orderBy('created_at', 'desc')->get();
+            $booking = Booking::with('category','service')->where('staff_id', $staff_id)->where('status', '0')->orderBy('created_at', 'desc')->get();
             return view('admin.pages.booking_client.index', compact('booking'));
         }
         
@@ -78,7 +78,7 @@ class BookingClientController extends Controller
 
         $staff = Staff::all();
         //$booking = Booking::all();
-        $booking = Booking::with('category','service')->where('status', 'upcoming')->orderBy('created_at', 'desc')->get();
+        $booking = Booking::with('category','service')->where('status', '0')->orderBy('created_at', 'desc')->get();
         dd($booking);
 
 
@@ -103,7 +103,7 @@ class BookingClientController extends Controller
     }
 
     public function bookingClentConfirm($id, $confirm){
-        Booking::where('id', $id)->update(['confirmed' => 1, 'status' => 'upcoming']);
+        Booking::where('id', $id)->update(['confirmed' => 1, 'status' => '0']);
         Session::Flash('success', "Client booking confirmed successfully also send email.");
 
         $booking = Booking::find($id);
@@ -303,6 +303,7 @@ class BookingClientController extends Controller
                 $message = new Message;
                 $message->sender_id = Auth::user()->id;
                 $message->recipient_id = $booking->client_id;
+                $message->role_id = 2;
                 $message->body = $request->message;
                 $message->save();
 
@@ -383,6 +384,7 @@ class BookingClientController extends Controller
                 $message = new Message;
                 $message->sender_id = Auth::user()->id;
                 $message->recipient_id = $booking->staff_id;
+                $message->role_id = 4;
                 $message->body = $request->message;
                 $message->save();
 
@@ -531,6 +533,7 @@ class BookingClientController extends Controller
         $message = new Message;
         $message->sender_id = Auth::user()->id;
         $message->recipient_id = $booking->client_id;
+        $message->role_id = 2;
         $message->body = $request->message;
         $message->save();
         

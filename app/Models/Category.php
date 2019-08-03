@@ -10,7 +10,7 @@ class Category extends Model
 
 	use softDeletes;
 
-	protected $fillable = ['business_id', 'name', 'start_date', 'expired_date'];
+	protected $fillable = ['name', 'start_date', 'expired_date'];
 
     public function services(){
         return $this->hasMany(Service::class);

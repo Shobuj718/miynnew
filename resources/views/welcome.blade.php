@@ -68,7 +68,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        <a href="{{ route('dashboard') }}">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -107,6 +107,8 @@
     <script>
         $.ajax({
             url: "http://127.0.0.1:8000/api/get-widget?key=1234567",
+            //url: "http://127.0.0.1:8000/api/get-widget?key=1234568",
+            //url: "http://127.0.0.1:8000/api/get-widget?key=15647250535d43cf3d173ec",
             type: "GET",
             crossDomain: true,
             dataType: "text",

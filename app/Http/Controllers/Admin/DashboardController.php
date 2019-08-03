@@ -249,11 +249,8 @@ class DashboardController extends Controller
         $response = [
             'success' => 'ok',
             'message' => "Services created"
-            
         ];
         return response()->json($response);
     }
-
-
 
 }

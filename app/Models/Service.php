@@ -10,7 +10,7 @@ class Service extends Model
 
 	use SoftDeletes;
 
-	protected $fillable = ['user_id', 'business_id', 'category_id', 'name', 'fee', 'description', 'duration_hours', 'duration_minutes'];
+	protected $fillable = ['user_id', 'business_id', 'calendar_setting_id', 'category_id', 'name', 'fee', 'description', 'duration_hours', 'duration_minutes'];
 
     public function booking(){
         return $this->hasOne(Booking::class);

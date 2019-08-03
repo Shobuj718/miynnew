@@ -35,5 +35,17 @@ class CategorieSeeder extends Seeder
         $category->business_id = 1;
         $category->name = 'Fee 15 Days';
         $category->save();
+
+        $category = new Category;
+        $category->slug = md5(uniqid(time()));
+        $category->business_id = 2;
+        $category->name = 'Fee 15 Days';
+        $category->save();
+
+        $category = new Category;
+        $category->slug = md5(uniqid(time()));
+        $category->business_id = 3;
+        $category->name = 'Premium Services';
+        $category->save();
     }
 }

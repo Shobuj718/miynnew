@@ -48,10 +48,32 @@ class UsersTableSeeder extends Seeder
         $user = new User;
         $user->first_name = "User";
         $user->slug = md5(uniqid(time()));
+        $user->role_id = 2;
+        $user->category_id = 0;
+        $user->business_id = 2;
+        $user->email = "user@gmail.com";
+        $user->email_verified_at = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
+        $user->password = Hash::make('12345678');
+        $user->save();
+
+        $user = new User;
+        $user->first_name = "Test";
+        $user->slug = md5(uniqid(time()));
+        $user->role_id = 2;
+        $user->category_id = 0;
+        $user->business_id = 3;
+        $user->email = "test@gmail.com";
+        $user->email_verified_at = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
+        $user->password = Hash::make('12345678');
+        $user->save();
+
+        $user = new User;
+        $user->first_name = "Client";
+        $user->slug = md5(uniqid(time()));
         $user->role_id = 4;
         $user->category_id = 0;
         $user->business_id = 0;
-        $user->email = "user@gmail.com";
+        $user->email = "client@gmail.com";
         $user->email_verified_at = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
         $user->password = Hash::make('12345678');
         $user->save();

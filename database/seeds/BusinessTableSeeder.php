@@ -22,5 +22,25 @@ class BusinessTableSeeder extends Seeder
         $business->short_description = "FREE 20 MINUTES CONSULTATION";
         $business->save();
 
+        $business = new Business;
+        $business->slug = md5(uniqid(time()));
+        $business->user_id = 4;
+        $business->industry_id = 1;
+        $business->profession_id = 1;
+        $business->secret_key = 1234568;
+        $business->name = 'AYLWARD GAME SOLICITORS 2';
+        $business->short_description = "FREE 20 MINUTES CONSULTATION 2";
+        $business->save();
+
+        $business = new Business;
+        $business->slug = md5(uniqid(time()));
+        $business->user_id = 5;
+        $business->industry_id = 1;
+        $business->profession_id = 1;
+        $business->secret_key = uniqid(time());
+        $business->name = 'AYLWARD GAME SOLICITORS 3';
+        $business->short_description = "FREE 20 MINUTES CONSULTATION 3";
+        $business->save();
+
     }
 }

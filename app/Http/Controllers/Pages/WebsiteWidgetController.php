@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pages;
 use App\Models\WebsiteWidget;
 use App\Models\CalendarSettings;
 use App\Models\Business;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -89,27 +90,11 @@ class WebsiteWidgetController extends Controller
     }
     
     public function getCalendarSettings(Request $request) {
-        //$business = Business::where('secret_key', $request->key)->first();
-        //$calendarSettings = CalendarSettings::where('business_id', $business->id)->first();
-        if($request->slug == '5c075dd0c57ad'){
-            $calendarSettings = CalendarSettings::where('id', 2)->first();
-        }else{
-             $calendarSettings = CalendarSettings::where('id', 1)->first();
-        }
-        /*
-        business_hour_end: "11:00 AM"
-        business_hour_start: "10:00 AM"
-        created_at: "2018-12-03 15:29:38"
-        increment_hour: 1
-        increment_minute: 10
-        local_time: 1
-        timezone: "Asia/Dhaka"
-        updated_at: "2018-12-28 06:28:26"
-        week_start: 6
-        weekly_off: Array(2)
-        0: 5
-        1: 6
-        */
+
+        $data = Service::where('slug', $request->slug)->first();
+        $calendar_id = $data->calendar_setting_id;
+        $calendarSettings = CalendarSettings::where('id', $calendar_id)->first();
+
         return response()->json([
             'business_hour_end' => $calendarSettings->business_hour_end,
             'business_hour_start' => $calendarSettings->business_hour_start,
@@ -140,8 +125,8 @@ class WebsiteWidgetController extends Controller
             <!--<a href="#button-content">Talk To Lawyer</a>-->
             <a href="#appointment-box">
                 <?php 
-                    //echo $webWidgetData->invitation_label;
-                    echo 'BOOK AN APPOINTMENT NOW';
+                    echo $webWidgetData->schedule;
+                    //echo 'BOOK AN APPOINTMENT NOW';
                 ?>
             </a>
         </div>
@@ -267,8 +252,8 @@ class WebsiteWidgetController extends Controller
                         <a class="close" href="#close">X</a>
                     
                     <div class="appointment-box-heading">
-                        <h2><a style="" href="https://www.aylwardgame.com.au" target="_blank">AYLWARD GAME SOLICITORS</a></h2>
-                        <p style="font-family: 'Open Sans', sans-serif;font-size: 16px!important;color: #031E3A">HOW CAN WE HELP YOU TODAY? PICK A SERVICE</p>
+                        <h2><a style="" href="https://www.aylwardgame.com.au" target="_blank"><?php echo $business->name ?></a></h2>
+                        <p style="font-family: 'Open Sans', sans-serif;font-size: 16px!important;color: #031E3A"><?php echo $webWidgetData->invitation_title; ?></p>
                     </div>
                     
                 </div>

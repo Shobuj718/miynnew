@@ -15,9 +15,14 @@ class MessageController extends Controller
     {
     	//dd($request->all());
 
+        $request->validate([
+            'message' => 'required|string'
+        ]);
+
     	$message = new Message;
     	$message->sender_id = $request->admin_id;
     	$message->recipient_id = $request->client_id;
+        $message->role_id = 2;
     	$message->body = $request->message;
     	$message->save();
     	
@@ -46,9 +51,14 @@ class MessageController extends Controller
     {
     	//dd($request->all());
 
+        $request->validate([
+            'message' => 'required|string'
+        ]);
+
     	$message = new Message;
     	$message->sender_id = $request->client_id;
     	$message->recipient_id = $request->admin_id;
+        $message->role_id = 4;
     	$message->body = $request->message;
     	$message->save();
     	

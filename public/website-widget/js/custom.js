@@ -1,4 +1,6 @@
 var key = '1234567';
+//var key = '1234568';
+//var key = '15647250535d43cf3d173ec';
 
 var getCalendar;
 var totalElementSize;
@@ -649,10 +651,10 @@ availableTimesHTML += '</div>';
 			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			    },*/
 		        method: 'post',
-		        url: 'http://127.0.0.1:8000/api/save-booking-info',
+		        url: 'http://127.0.0.1:8000/api/save-booking-info?key=' + key,
 		        data: newObj
 		    }).done(function(data) {
-		    	//alert('validation done!!!');
+		    	alert('validation done!!!');
 		        console.log(data);
 		        console.log(data.status);
 		        console.log(data.status);

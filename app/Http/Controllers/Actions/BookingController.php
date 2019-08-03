@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Category;
 use App\Models\ContactInfo;
 use App\Models\User;
+use App\Models\Business;
 use App\Models\Message;
 
 use Illuminate\Http\File;
@@ -48,14 +49,20 @@ class BookingController extends Controller {
         
         $service_slug = $request->service_slug;
         //$staff_slug = $request->staff_slug;
-        $staff_slug = "5c04a3a1cfcc3";
+
+        $business = Business::where('secret_key', $request->key)->first();
+
+        //$staff_slug = "11622572921c994dd1795d376a25169b";
         $service = Service::where('slug', $service_slug)->first();
-        $staff = User::where('slug', $staff_slug)->first();
+        $staff = User::where('id', $business->user_id)->first();
         $category = Category::find($service->category_id);
-        $contactInfo = ContactInfo::where('user_id', $staff->id)->first();
+        //$contactInfo = ContactInfo::where('user_id', $staff->id)->first();
         $requested_moments = serialize($request->except('key', 'subject', 'message', 'first_name', 'last_name', 'phone', 'email', 'service_slug', 'staff_slug', 'country_code'));
-        
-        //dd($request->all());
+        /*return response()->json([
+            'status' => 'success',
+            'booking' => $request->all()
+        ]);
+        dd($request->all());*/
         
         $user = User::where('email', $request->email)->first();
 
@@ -70,15 +77,14 @@ class BookingController extends Controller {
             $password = mt_rand();
             
             $user = User::create([
-                'firstname' => $request->first_name,
-                'lastname' => $request->last_name,
-                'display_name' => $request->first_name,
                 'slug' => md5(uniqid(time())),
-                'role_id' => 5,
-                'email_verified_at' => date("Y-m-d H:i:s"),
-                'color' => '#07EAD4',
+                'role_id' => 4,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
                 'phone' => $phone,
                 'email' => $request->email,
+                'email_verified_at' => date("Y-m-d H:i:s"),
+                'color' => '#07EAD4',
                 'password' => Hash::make($password),
             ]);
             
@@ -90,13 +96,13 @@ class BookingController extends Controller {
 
 
         $booking = new Booking;
-        
+        $booking->slug = md5(uniqid(time()));
         $booking->category_id = $service->category_id;
         $booking->service_id = $service->id;
         $booking->staff_id = $staff->id;
         $booking->client_id = $user->id;
         $booking->service_name = $service->name;
-        $booking->staff_name = $staff->display_name;
+        $booking->staff_name = $staff->first_name;
         $booking->first_name = $request->first_name;
         $booking->last_name = $request->last_name;
 
@@ -104,11 +110,7 @@ class BookingController extends Controller {
 
         $booking->email = $request->email;
         $booking->subject = $request->subject;
-        //$booking->message = $request->message;
-        $booking->requested_date = $requested_moments;
-        
-        $booking->slug = $slug;
-        
+        $booking->requested_date = $requested_moments;        
         
         $booking->save();
         
@@ -116,6 +118,7 @@ class BookingController extends Controller {
         $message = new Message;
         $message->sender_id = $booking->client_id;
         $message->recipient_id = $booking->staff_id;
+        $message->role_id = $user->role_id;
         $message->body = $request->message;
         $message->save();
 
@@ -131,16 +134,6 @@ class BookingController extends Controller {
         
         $booking['staff_phone'] = $staff->phone;
 
-
-        
-        $data = [
-            'booking' => $booking,
-            'staff' => $staff,
-            'service' => $service,
-            'category' => $category,
-            'contactInfo' => $contactInfo,
-            'dateAndTimes' => $request->except('key', 'subject', 'message', 'first_name', 'last_name', 'phone', 'email', 'service_slug', 'staff_slug')
-        ];
 
         $value = unserialize($requested_moments);
 
