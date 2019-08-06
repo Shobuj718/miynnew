@@ -43,7 +43,7 @@ class DashboardController extends Controller
     public function dashboardCheck(){
         $industries = Industry::all();
         $professions = Profession::all();
-        //dd($data);
+        //dd($professions);
         return view('admin.onboarding.onboard_test', compact('industries', 'professions'));
     }
 

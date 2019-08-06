@@ -52,13 +52,13 @@ Route::group(['prefix' => 'app', 'middleware' => ['auth', 'verified']], function
 });
 
 
-Route::post('/business', 'Admin\BusinessProfileController@business');
+Route::post('/business', 'Admin\BusinessProfileController@business')->name('business');
 Route::post('/timezone', 'Admin\BusinessProfileController@timezone');
 
 
 
 
-Route::group(['middleware' => ['auth', 'verified']], function(){
+Route::group(['prefix' => 'app', 'middleware' => ['auth', 'verified']], function(){
     Route::get('/settings', 'Admin\SettingsController@settingPage')->name('settings');
     Route::get('/settings/calendar', 'Admin\SettingsController@availabilityAndCalendar')->name('availabilityAndCalendar');
     Route::get('/calendar', 'Admin\CalendarController@showCalendar')->name('showCalendar');
@@ -75,6 +75,9 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 
     Route::get('/client-portal', 'Actions\ClientPortalController@index')->name('client.portal');
     Route::get('/website-widgets', 'Actions\WebsiteWidgetController@index')->name('website.widget');
+    Route::get('/add-widgets', 'Actions\WebsiteWidgetController@add_widget')->name('add.widget');
+    Route::post('/store-portal-actions', 'Actions\WebsiteWidgetController@store_widget_actions')->name('store.portal.actions');
+    Route::post('/store-portal-invite', 'Actions\WebsiteWidgetController@store_portal_invite')->name('store.portal.invite');
     /*Route::get('/website-widgets', 'Actions\WebsiteWidgetController@index')->name('add.widget');*/
 
 });
@@ -101,7 +104,7 @@ website widget route end
 ===============================================================================*/
 
 
-Route::group(['middleware' => ['auth', 'verified']], function(){
+Route::group(['prefix' => 'app', 'middleware' => ['auth', 'verified']], function(){
     //Route::get('/clinent-services', 'Actions\ServiceController@client_services')->name('client.services');
     Route::get('/client-services', 'Actions\ServiceController@client_services')->name('client.services');
     //Route::get('/clinent-all-services', 'Actions\ServiceController@client_all_services')->name('client.services.all');

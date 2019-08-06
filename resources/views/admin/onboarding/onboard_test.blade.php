@@ -215,11 +215,6 @@
         </div>
     </div>
 
-                
-           
-
-
-
 @endsection
 
 @section('scripts')
@@ -440,7 +435,7 @@ function get_professions(){
 
     if(industry_id != ''){
         $.ajax({
-            url : '{{url('profession/getProfession')}}',
+            url : '{{route("getProfession")}}',
             type: 'get',
             data: {'industry_id':industry_id},
             success: function (data) {
@@ -934,7 +929,7 @@ function get_professions(){
                     console.log(data.message);
                     console.log(data.value);
                     if(data.success == 'ok'){
-                        window.location = '/dashboard/onboarding';
+                        //window.location = 'route("dashboard.onboarding")';
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {

@@ -102,11 +102,11 @@
 
                     <div class="custom-control custom-radio">
                       <input type="radio" data-toggle="modal" data-target="#service_modal" class="custom-control-input"
-                      <?php if($OnboardService == 1){
+                      <?php /*if($OnboardService == 1){
                          echo 'checked';
                       }else{
                         echo '';
-                      } ?>
+                      }*/ ?>
                       id="set_service_online_schedule" name="set_service_online_schedule">
                       <label class="custom-control-label" for="set_service_online_schedule">Set up your service menu and your online schedular</label>
                     </div>

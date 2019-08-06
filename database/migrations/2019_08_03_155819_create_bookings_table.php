@@ -19,6 +19,7 @@ class CreateBookingsTable extends Migration
             $table->integer('category_id')->unsigned()->nulllable();
             $table->integer('service_id')->unsigned()->nulllable();
             $table->integer('staff_id')->unsigned()->nulllable();
+            $table->integer('sms_id')->default(0);
             $table->integer('client_id')->unsigned()->nulllable();
             $table->string('service_name')->nulllable();
             $table->string('staff_name')->nulllable();

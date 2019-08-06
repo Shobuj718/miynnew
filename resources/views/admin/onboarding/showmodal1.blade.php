@@ -132,8 +132,8 @@
                                     <label class="col-sm-2 col-form-label">Time Format</label>
                                     <div class="col-sm-10">
                                         <select name="time_format" id="time_format" class="form-control">
-                                            <option value="12 hours(AM/PM)">12 hours(AM/PM)</option>
                                             <option value="24 hours(AM/PM)">24 hours(AM/PM)</option>
+                                            <option value="12 hours(AM/PM)">12 hours(AM/PM)</option>
                                         </select>
                                     </div>
                                 </div>

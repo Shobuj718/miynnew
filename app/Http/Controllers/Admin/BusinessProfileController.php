@@ -19,7 +19,14 @@ class BusinessProfileController extends Controller
     public function business(Request $request)
     {        
 
-        
+        $response = [
+            'success' => 'ok',
+            'message' => "Business and time zone created",
+            'value' => $request->all()
+        ];
+        return response()->json($response);
+
+        dd($request->all());
 
 
 		$business = new BusinessProfile;
@@ -44,9 +51,9 @@ class BusinessProfileController extends Controller
         $business->phone_number = $ext.$request->phone_number;
 
         /*start to send sms*/
-       $sid    = env( 'TWILIO_SID' );
+       /*$sid    = env( 'TWILIO_SID' );
        $token  = env( 'TWILIO_TOKEN' );
-       $client = new Client( $sid, $token );
+       $client = new Client( $sid, $token);
 
        $message = 'Thank\'s '.$auth_name.' to register our application';
        $client->messages->create(
@@ -55,7 +62,7 @@ class BusinessProfileController extends Controller
                        'from' => env( 'TWILIO_FROM' ),
                        'body' => $message,
                    ]
-               );
+               );*/
        
            /*end to send sms*/
 

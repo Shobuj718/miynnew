@@ -182,7 +182,7 @@
                                             </div>
                                             <div class="col-sm-10">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="invitation_label" id="invitation_label" value="Contact">
+                                                    <input type="text" class="form-control" name="invitation_lebel" id="invitation_lebel" value="Contact">
                                                     <p>This button will appear at the bottom right of your web page</p>
                                                 </div>
                                             </div>
@@ -345,7 +345,7 @@
 
         $.ajax({
             type:'POST',
-            url :'/store_widget_actions', 
+            url :"{{route('store.portal.actions')}}", 
             data:{_token:CSRF_TOKEN,schedule:schedule, call_us:call_us, share_document:share_document, content:content, details:details },
             dataType:'json',
             success:function(data){
@@ -372,20 +372,20 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 
-        var invitation_label = $('#invitation_label').val();
+        var invitation_lebel = $('#invitation_lebel').val();
         var invitation_title = $('#invitation_title').val();
         var invitation_text = $('#invitation_text').val();
-        alert(invitation_label);
+        alert(invitation_lebel);
 
         $.ajax({
             type:'POST',
-            url :'/store_widget_invite',
-            data:{_token:CSRF_TOKEN, invitation_label:invitation_label, invitation_title:invitation_title, invitation_text:invitation_text},
+            url :"{{route('store.portal.invite')}}", 
+            data:{_token:CSRF_TOKEN, invitation_lebel:invitation_lebel, invitation_title:invitation_title, invitation_text:invitation_text},
             dataType:'json',
             success: function(data){
                 console.log(data.success);
                 console.log(data.value);
-                console.log(data.websiteWidget);
+                //console.log(data.websiteWidget);
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

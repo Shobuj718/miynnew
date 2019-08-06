@@ -7,17 +7,61 @@ use App\Models\WebsiteWidget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Session;
 use App\Models\Business;
 
 class WebsiteWidgetController extends Controller 
 {
     
+    /*$data['slug'] = str_replace(' ', '-', $request->category_name);
+    Category::create($data);*/
+
     public function index(){
         return view('admin.pages.website_widget.index');
     }
 
-    public function save(Request $request) {
+    public function add_widget(){
+        return view('admin.pages.website_widget.add_widget');
+    }
+
+    public function store_widget_actions(Request $request){
+
+        try {
+            
+            if(WebsiteWidget::where('user_id', Auth::user()->id)->count()) {
+                $websiteWidget = WebsiteWidget::where('user_id', Auth::user()->id)->first();  
+            } else {
+                $websiteWidget = new WebsiteWidget;
+                $websiteWidget->user_id = Auth::user()->id;
+            }
+
+            $websiteWidget->schedule = $request->schedule;
+            $websiteWidget->details = $request->details;
+            $websiteWidget->contents = $request->content;
+            $websiteWidget->call_us = $request->call_us;
+
+            $websiteWidget->save();
+
+            Session::Flash('success', "Website Widget actions created succesfully");
+
+            return response()->json([
+                'status' => 'ok',
+                'value'  =>$request->all()
+            ]);
+
+        } catch (\Exception $e) {
+            Session::Flash('error: Something went wrong !'.$e->getMessage());
+        }
+
+        
+    }
+
+    public function store_portal_invite(Request $request) {
+
+        /*return response()->json([
+            'success' => 'ok',
+            'value'  => $request->all()
+        ]);*/
 
         if(WebsiteWidget::where('user_id', Auth::user()->id)->count()) {
             $websiteWidget = WebsiteWidget::where('user_id', Auth::user()->id)->first();    
@@ -26,52 +70,16 @@ class WebsiteWidgetController extends Controller
             $websiteWidget->user_id = Auth::user()->id;
         }
 
-        
-        $websiteWidget->action_type = $request->action_type;
-        $websiteWidget->schedule = $request->schedule;
-        $websiteWidget->details = $request->details;
-        $websiteWidget->content = $request->content;
-        $websiteWidget->youtube = $request->youtube;
-        $websiteWidget->call_us = $request->call_us;
-        $websiteWidget->make_payment = $request->make_payment;
-        $websiteWidget->map = $request->map;
-
-        $websiteWidget->invitation_label = $request->invitation_label;
+        $websiteWidget->invitation_lebel = $request->invitation_lebel;
         $websiteWidget->invitation_title = $request->invitation_title;
         $websiteWidget->invitation_text = $request->invitation_text;
 
-        if($request->desktop_view == "true") {
-            $websiteWidget->desktop_view = 1;    
-        } else {
-            $websiteWidget->desktop_view = 0;
-        }
-        
-        if($request->auto_desktop_view == "true") {
-            $websiteWidget->auto_desktop_view = 1;
-        } else {
-            $websiteWidget->auto_desktop_view = 0;    
-        }
-        
-        $websiteWidget->auto_desktop_view_after = $request->auto_desktop_view_after;
-        
-        if($request->mobile_view == "true") {
-            $websiteWidget->mobile_view = 1;    
-        } else {
-            $websiteWidget->mobile_view = 0;
-        }
-        
-        if($request->auto_mobile_view == "true") {
-            $websiteWidget->auto_mobile_view = 1;
-        } else {
-            $websiteWidget->auto_mobile_view = 0;
-        }
-        
-        $websiteWidget->auto_mobile_view_after = $request->auto_mobile_view_after;
-
+        Session::Flash('success', 'Website Widget invitation added successfully');
         $websiteWidget->save();
 
         return response()->json([
-            'status' => 'success',
+            'success' => 'ok',
+            'value'  => $request->all(),
             'websiteWidget' => $websiteWidget
         ]);
     }
