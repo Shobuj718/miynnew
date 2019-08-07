@@ -64,10 +64,10 @@
                             <td>{{ str_limit($data->description, 30) }}</td>
                             <td>{{ $data->fee }}</td>
                             <td>
-                                <a style="color:#fff;" class="btn btn-info btn-transparent btn-rounded" href="{{ route('client.services.edit', $data->id) }}">Edit</a>
+                                <a style="color:#fff;" class="btn btn-info btn-transparent btn-rounded" href="{{ route('client.services.edit', $data->slug) }}">Edit</a>
 
                         
-                                <a style="color:#fff;" class="btn btn-danger btn-transparent btn-rounded" href="{{ route('client.services.delete',$data->id) }}">Delete</a>
+                                <a onclick="return confirm('Are you sure you want to delete this service !!!')" style="color:#fff;" class="btn btn-danger btn-transparent btn-rounded" href="{{ route('client.services.delete',$data->slug) }}">Delete</a>
                                 
                             </td>
                         </tr>

@@ -375,7 +375,7 @@
         var invitation_lebel = $('#invitation_lebel').val();
         var invitation_title = $('#invitation_title').val();
         var invitation_text = $('#invitation_text').val();
-        alert(invitation_lebel);
+        //alert(invitation_lebel);
 
         $.ajax({
             type:'POST',

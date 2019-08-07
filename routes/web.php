@@ -107,11 +107,12 @@ website widget route end
 Route::group(['prefix' => 'app', 'middleware' => ['auth', 'verified']], function(){
     //Route::get('/clinent-services', 'Actions\ServiceController@client_services')->name('client.services');
     Route::get('/client-services', 'Actions\ServiceController@client_services')->name('client.services');
+    Route::post('/client-service-add', 'Actions\ServiceController@client_service_add')->name('client.service.add');
     //Route::get('/clinent-all-services', 'Actions\ServiceController@client_all_services')->name('client.services.all');
     Route::get('/services', 'Actions\ServiceController@client_all_services')->name('client.services.all');
-    Route::get('/client_services-edit/{id}', 'Actions\ServiceController@client_services_edit')->name('client.services.edit');
-    Route::get('/client-services-delete/{id}', 'Actions\ServiceController@client_services_delete')->name('client.services.delete');
-    Route::post('/client-service-update/{id}', 'Actions\ServiceController@client_service_update')->name('client.service.update');
+    Route::get('/client-services-edit/{slug}', 'Actions\ServiceController@client_services_edit')->name('client.services.edit');
+    Route::get('/client-services-delete/{slug}', 'Actions\ServiceController@client_services_delete')->name('client.services.delete');
+    Route::post('/client-service-update/{slug}', 'Actions\ServiceController@client_service_update')->name('client.service.update');
 
     Route::get('/client-appointments-view/{id}', 'Admin\BookingClientController@client_appointments_view')->name('appointments.view');
     Route::get('/view-accept-appointment/{id}', 'Admin\BookingClientController@view_accept_appointment')->name('view.accept.appointment');
