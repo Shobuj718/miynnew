@@ -80,6 +80,17 @@ Route::group(['prefix' => 'app', 'middleware' => ['auth', 'verified']], function
     Route::post('/store-portal-invite', 'Actions\WebsiteWidgetController@store_portal_invite')->name('store.portal.invite');
     /*Route::get('/website-widgets', 'Actions\WebsiteWidgetController@index')->name('add.widget');*/
 
+
+    // all industry system(only for admin)
+    Route::get('/add-industry-name', 'Actions\IndustryController@create')->name('industry.add');
+    Route::post('/industry', 'Actions\IndustryController@store')->name('industry.store');
+    Route::get('/all-industry', 'Actions\IndustryController@index')->name('industry.all');
+    Route::get('/edit-industry-name/{slug}', 'Actions\IndustryController@edit')->name('industry.edit');
+    Route::post('/update-industry-name/{slug}', 'Actions\IndustryController@update')->name('industry.update');
+    Route::get('/active-industry-name/{slug}', 'Actions\IndustryController@active')->name('industry.active');
+    Route::post('/active-industry-name/{slug}', 'Actions\IndustryController@change_status')->name('industry.status.change');
+    Route::get('/delete-industry/{slug}', 'Actions\IndustryController@delete')->name('industry.delete');
+
 });
 
 /* =============================================================================
