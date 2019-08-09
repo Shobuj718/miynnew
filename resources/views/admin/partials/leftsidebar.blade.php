@@ -57,6 +57,13 @@
         <li class="">
             <a href="{{ route('booking.client') }}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-user"></i><b>UL</b></span>
+                <span class="pcoded-mtext">Active Users</span>
+                <span class="pcoded-mcaret"></span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{{ route('booking.client') }}" class="waves-effect waves-dark">
+                <span class="pcoded-micon"><i class="ti-user"></i><b>UL</b></span>
                 <span class="pcoded-mtext">Suspended Users</span>
                 <span class="pcoded-mcaret"></span>
             </a>
@@ -164,14 +171,14 @@
             </a>
             <ul class="pcoded-submenu">
                 <li class=" ">
-                    <a href="{{ route('client.portal') }}" class="waves-effect waves-dark">
+                    <a href="{{ route('profession.add') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">Add Profession</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
                 <li class=" ">
-                    <a href="{{ route('website.widget') }}" class="waves-effect waves-dark">
+                    <a href="{{ route('profession.all') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">All Profession</span>
                         <span class="pcoded-mcaret"></span>

@@ -10,4 +10,9 @@ class Industry extends Model
     use SoftDeletes;
 
     protected $fillable = ['slug', 'name'];
+
+	public function professions(){
+		return $this->hasMany(Profession::class);
+	}
+
 }

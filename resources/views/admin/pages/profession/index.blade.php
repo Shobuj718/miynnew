@@ -12,7 +12,7 @@
         <div class="row align-items-center">
             <div class="col-md-8">
                 <div class="page-header-title">
-                    <h5 class="m-b-10"> Client All Services</h5>
+                    <h5 class="m-b-10"> All Profession</h5>
                     <p class="m-b-0">Welcome to miyn dashboard</p>
                 </div>
             </div>
@@ -37,8 +37,8 @@
            </div>
         @endif
         <div class="card-header">
-            <h5>All services list</h5>
-            <span style="" class="pull-right"><a class="btn btn-success" href="{{route('client.services')}}">Add New Industry</a></span>
+            <h5>All Profession list</h5>
+            <span style="" class="pull-right"><a class="btn btn-success" href="{{route('profession.add')}}">Add New Profession</a></span>
         </div>
         <div class="card-block">
             <div class="table-responsive dt-responsive">
@@ -46,9 +46,9 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Service Name</th>
-                            <th>Service Desc</th>
-                            <th>Service FEE</th>
+                            <th>Profession Name</th>
+                            <th>Industry Name</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -57,18 +57,30 @@
                             $i = 0;
                         @endphp
 
-                        @foreach($service as $key => $data)
+                        @foreach($professions as $data)
 
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $data->name }}</td>
-                            <td>{{ str_limit($data->description, 30) }}</td>
-                            <td>{{ $data->fee }}</td>
+                            <td>{{ $data->industry->name }}</td>
                             <td>
-                                <a style="color:#fff;" class="btn btn-info btn-transparent btn-rounded" href="{{ route('client.services.edit', $data->slug) }}">Edit</a>
+                                @if($data->status == 0)
+                                    <button style="color: #fff;background-color: #c7c450;" class="btn pending-btn">Pending</button>
+                                @else
+                                    <button style="color: #fff;background-color: green;" class="btn active-btn">Active</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if($data->status == 0)
+                                    <a style="color:#fff;" class="btn btn-primary btn-transparent btn-rounded" href="{{ route('profession.status', ['slug' =>$data->slug, 'status' => $data->status]) }}">Active</a>
+                                @else
+                                    <a style="color:#fff;background-color: #7f3f4b;" class="btn btn-primary btn-transparent btn-rounded" href="{{ route('profession.status', ['slug' =>$data->slug, 'status' => $data->status]) }}">De-Active</a>
+                                @endif
+
+                                <a style="color:#fff;" class="btn btn-info btn-transparent btn-rounded" href="{{ route('profession.edit', $data->slug) }}">Edit</a>
 
                         
-                                <a onclick="return confirm('Are you sure you want to delete this service !!!')" style="color:#fff;" class="btn btn-danger btn-transparent btn-rounded" href="{{ route('client.services.delete',$data->slug) }}">Delete</a>
+                                <a onclick="return confirm('Are you sure you want to delete this industry !!!')" style="color:#fff;" class="btn btn-danger btn-transparent btn-rounded" href="{{ route('profession.delete',$data->slug) }}">Delete</a>
                                 
                             </td>
                         </tr>
@@ -78,9 +90,9 @@
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>Service Name</th>
-                            <th>Service Desc</th>
-                            <th>Service FEE</th>
+                            <th>Profession Name</th>
+                            <th>Industry Name</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -97,9 +109,6 @@
 <!-- data-table js -->
 <script src="{{ asset('/files/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('/files/assets/pages/data-table/js/jszip.min.js') }}"></script>
-<script src="{{ asset('/files/assets/pages/data-table/js/pdfmake.min.js') }}"></script>
-<script src="{{ asset('/files/assets/pages/data-table/js/vfs_fonts.js') }}"></script>
 <script src="{{ asset('/files/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('/files/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('/files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>

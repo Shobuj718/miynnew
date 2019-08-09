@@ -12,7 +12,7 @@
         <div class="row align-items-center">
             <div class="col-md-8">
                 <div class="page-header-title">
-                    <h5 class="m-b-10"> Client All Industry</h5>
+                    <h5 class="m-b-10"> All Industry</h5>
                     <p class="m-b-0">Welcome to miyn dashboard</p>
                 </div>
             </div>
@@ -38,6 +38,7 @@
         @endif
         <div class="card-header">
             <h5>All Industry list</h5>
+            <span style="" class="pull-right"><a class="btn btn-success" href="{{route('industry.add')}}">Add New Industry</a></span>
         </div>
         <div class="card-block">
             <div class="table-responsive dt-responsive">

@@ -112,7 +112,12 @@ class ServiceController extends Controller
             $service->fee = $request->fee;
             $service->updated_at = NOW();
 
+            $image_path = public_path().$service->image;
+
             if($request->hasFile('image')){
+                if(file_exists($image_path)){
+                    unlink($image_path);
+                }
                 $file = $request->file('image');
                 $path = 'images/services/';
                 $filename = md5(uniqid()).time().'.'.($file->getClientOriginalExtension());

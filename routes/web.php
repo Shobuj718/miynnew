@@ -59,6 +59,7 @@ Route::post('/timezone', 'Admin\BusinessProfileController@timezone');
 
 
 Route::group(['prefix' => 'app', 'middleware' => ['auth', 'verified']], function(){
+
     Route::get('/settings', 'Admin\SettingsController@settingPage')->name('settings');
     Route::get('/settings/calendar', 'Admin\SettingsController@availabilityAndCalendar')->name('availabilityAndCalendar');
     Route::get('/calendar', 'Admin\CalendarController@showCalendar')->name('showCalendar');
@@ -81,15 +82,26 @@ Route::group(['prefix' => 'app', 'middleware' => ['auth', 'verified']], function
     /*Route::get('/website-widgets', 'Actions\WebsiteWidgetController@index')->name('add.widget');*/
 
 
-    // all industry system(only for admin)
-    Route::get('/add-industry-name', 'Actions\IndustryController@create')->name('industry.add');
-    Route::post('/industry', 'Actions\IndustryController@store')->name('industry.store');
+    // industry functionality (only for admin)
     Route::get('/all-industry', 'Actions\IndustryController@index')->name('industry.all');
+    Route::get('/add-industry', 'Actions\IndustryController@create')->name('industry.add');
+    Route::post('/industry', 'Actions\IndustryController@store')->name('industry.store');
     Route::get('/edit-industry-name/{slug}', 'Actions\IndustryController@edit')->name('industry.edit');
     Route::post('/update-industry-name/{slug}', 'Actions\IndustryController@update')->name('industry.update');
     Route::get('/active-industry-name/{slug}', 'Actions\IndustryController@active')->name('industry.active');
     Route::post('/active-industry-name/{slug}', 'Actions\IndustryController@change_status')->name('industry.status.change');
     Route::get('/delete-industry/{slug}', 'Actions\IndustryController@delete')->name('industry.delete');
+
+    // professions functionality (only for admin)
+    Route::get('/all-profession', 'Actions\ProfessionController@index')->name('profession.all');
+    Route::get('/add-profession', 'Actions\ProfessionController@create')->name('profession.add');
+    Route::post('/store-profession', 'Actions\ProfessionController@store')->name('profession.store');
+    Route::get('/edit-profession/{slug}', 'Actions\ProfessionController@edit')->name('profession.edit');
+    Route::post('/update-profession/{slug}', 'Actions\ProfessionController@update')->name('profession.update');
+    Route::get('/delete-profession/{slug}', 'Actions\ProfessionController@delete')->name('profession.delete');
+    Route::get('/status-change-profession/{slug}/{status}', 'Actions\ProfessionController@status')->name('profession.status');
+
+    
 
 });
 
