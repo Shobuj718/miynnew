@@ -1,3 +1,6 @@
+  
+  <div id="noty-holder"></div><!-- HERE IS WHERE THE NOTY WILL APPEAR-->
+
 <div class="navbar-wrapper">
     <div class="navbar-logo">
         <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="javascript:void(0)">

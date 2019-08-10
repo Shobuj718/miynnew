@@ -101,6 +101,9 @@ Route::group(['prefix' => 'app', 'middleware' => ['auth', 'verified']], function
     Route::get('/delete-profession/{slug}', 'Actions\ProfessionController@delete')->name('profession.delete');
     Route::get('/status-change-profession/{slug}/{status}', 'Actions\ProfessionController@status')->name('profession.status');
 
+    //category functionality (only for admin) 
+    Route::get('/all-category', 'Actions\CategoryController@index')->name('category.all');
+    Route::get('/edit-category/{slug}', 'Actions\CategoryController@edit')->name('category.edit');
     
 
 });

@@ -8,6 +8,8 @@
 ?>
 
 @extends('admin.master')
+@section('title', 'NEW')
+@section('dashboard', 'active selected')
 @section('page_header')
 <div class="page-header">
     <div class="page-block">

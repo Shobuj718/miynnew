@@ -1,4 +1,7 @@
 @extends('admin.master')
+@section('inbox', 'active selected')
+@section('title', 'Inbox')
+
 
 @section('styles')
 <!-- waves.css -->

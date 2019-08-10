@@ -26,7 +26,7 @@
 
     <ul class="pcoded-item pcoded-left-item">
         @if(Auth::user()->role->permission === 'root' || Auth::user()->role->permission === 'business_admin' || Auth::user()->role->permission === 'staff')
-        <li class="">
+        <li class="@yield('dashboard')">
             <a href="{{ route('dashboard') }}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-home"></i><b>N</b></span>
                 <span class="pcoded-mtext">Dashboard</span>
@@ -37,7 +37,7 @@
         @endif
 
         @if(Auth::user()->role->permission === 'user' || Auth::user()->role->permission === 'staff' || Auth::user()->role->permission === 'business_admin')
-            <li class="">
+            <li class="@yield('appointments')">
                 <a href="{{ route('booking.client') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-mobile"></i></i><b>AP</b></span>
                     <span class="pcoded-mtext">Appointments</span>
@@ -47,21 +47,21 @@
         @endif
 
         @if(Auth::user()->role->permission === 'root')
-        <li class="">
+        <li class="@yield('all_users')">
             <a href="{{ route('booking.client') }}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-user"></i><b>UL</b></span>
                 <span class="pcoded-mtext">All Users</span>
                 <span class="pcoded-mcaret"></span>
             </a>
         </li>
-        <li class="">
+        <li class="@yield('active_users')">
             <a href="{{ route('booking.client') }}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-user"></i><b>UL</b></span>
                 <span class="pcoded-mtext">Active Users</span>
                 <span class="pcoded-mcaret"></span>
             </a>
         </li>
-        <li class="">
+        <li class="@yield('suspend_users')">
             <a href="{{ route('booking.client') }}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-user"></i><b>UL</b></span>
                 <span class="pcoded-mtext">Suspended Users</span>
@@ -70,35 +70,35 @@
         </li>
         @endif
         @if(Auth::user()->role->permission === 'root' || Auth::user()->role->permission === 'business_admin')
-        <li class="">
+        <li class="@yield('inbox')">
             <a href="{{ route('inbox') }}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-mobile"></i></i><b>In</b></span>
                 <span class="pcoded-mtext">Inbox</span>
                 <span class="pcoded-mcaret"></span>
             </a>
         </li>
-        <li class="">
+        <li class="@yield('calendar')">
             <a href="{{ route('showCalendar') }}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-calendar"></i><b>Cal</b></span>
                 <span class="pcoded-mtext">Calendar</span>
                 <span class="pcoded-mcaret"></span>
             </a>
         </li>
-        <li class="">
+        <li class="@yield('payments')">
             <a href="#" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-calendar"></i><b>Cal</b></span>
                 <span class="pcoded-mtext">Payments</span>
                 <span class="pcoded-mcaret"></span>
             </a>
         </li> 
-        <li class="">
+        <li class="@yield('documents')">
             <a href="#" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-calendar"></i><b>Cal</b></span>
                 <span class="pcoded-mtext">Documents</span>
                 <span class="pcoded-mcaret"></span>
             </a>
         </li> 
-        <li class="">
+        <li class="@yield('marketing')">
             <a href="#" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-calendar"></i><b>Cal</b></span>
                 <span class="pcoded-mtext">Marketing</span>
@@ -109,21 +109,21 @@
         @endif
 
         @if(Auth::user()->role->permission === 'business_admin' )
-        <li class="pcoded-hasmenu">
+        <li class="pcoded-hasmenu ">
             <a href="javascript:void(0)" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-gift"></i><b>Ser</b></span>
                 <span class="pcoded-mtext">Services</span>
                 <span class="pcoded-mcaret"></span>
             </a>
             <ul class="pcoded-submenu">
-                <li class="">
+                <li class="@yield('all_services')">
                     <a href="{{ route('client.services.all') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-user"></i><b>S</b></span>
                         <span class="pcoded-mtext">All Services</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-                <li class="">
+                <li class="@yield('add_services')">
                     <a href="{{ route('client.services') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-user"></i><b>S</b></span>
                         <span class="pcoded-mtext">Add Services</span>
@@ -139,21 +139,22 @@
     <ul class="pcoded-item pcoded-left-item">
         
         @if(Auth::user()->role->permission === 'root')
-        <li class="pcoded-hasmenu">
+        <!-- <li class="pcoded-hasmenu @yield('active pcoded-trigger')"> -->
+        <li class="pcoded-hasmenu ">
             <a href="javascript:void(0)" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-gift"></i><b>OP</b></span>
                 <span class="pcoded-mtext">Industry</span>
                 <span class="pcoded-mcaret"></span>
             </a>
             <ul class="pcoded-submenu">
-                <li class=" ">
+                <li class="@yield('industry_add')">
                     <a href="{{ route('industry.add') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">Add Industry</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-                <li class=" ">
+                <li class="@yield('industry_all')">
                     <a href="{{ route('industry.all') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">All Industry</span>
@@ -163,21 +164,21 @@
                 
             </ul>
         </li>
-        <li class="pcoded-hasmenu">
+        <li class="pcoded-hasmenu ">
             <a href="javascript:void(0)" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-gift"></i><b>OP</b></span>
                 <span class="pcoded-mtext">Profession</span>
                 <span class="pcoded-mcaret"></span>
             </a>
             <ul class="pcoded-submenu">
-                <li class=" ">
+                <li class="@yield('add_profession')">
                     <a href="{{ route('profession.add') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">Add Profession</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-                <li class=" ">
+                <li class="@yield('all_profession')">
                     <a href="{{ route('profession.all') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">All Profession</span>
@@ -187,22 +188,22 @@
                 
             </ul>
         </li>
-        <li class="pcoded-hasmenu">
+        <li class="pcoded-hasmenu ">
             <a href="javascript:void(0)" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-gift"></i><b>OP</b></span>
                 <span class="pcoded-mtext">Category</span>
                 <span class="pcoded-mcaret"></span>
             </a>
             <ul class="pcoded-submenu">
-                <li class=" ">
+                <li class="@yield('add_category')">
                     <a href="{{ route('client.portal') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">Add Category</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-                <li class=" ">
-                    <a href="{{ route('website.widget') }}" class="waves-effect waves-dark">
+                <li class="@yield('all_category')">
+                    <a href="{{ route('category.all') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">All Category</span>
                         <span class="pcoded-mcaret"></span>
@@ -216,21 +217,21 @@
     
     <ul class="pcoded-item pcoded-left-item">
         @if(Auth::user()->role->permission === 'business_admin')
-        <li class="pcoded-hasmenu">
+        <li class="pcoded-hasmenu ">
             <a href="javascript:void(0)" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-gift"></i><b>OP</b></span>
                 <span class="pcoded-mtext">Online Presence</span>
                 <span class="pcoded-mcaret"></span>
             </a>
             <ul class="pcoded-submenu">
-                <li class=" ">
+                <li class="@yield('client_portal')">
                     <a href="{{ route('client.portal') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">Client Portal</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-                <li class=" ">
+                <li class="@yield('website_widget')">
                     <a href="{{ route('website.widget') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">Website Widget</span>
@@ -243,7 +244,7 @@
         @endif
 
         @if(Auth::user()->role->permission === 'root' || Auth::user()->role->permission === 'business_admin')
-        <li class="">
+        <li class="@yield('settings')">
             <a href="{{ route('settings') }}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-settings"></i></i><b>N</b></span>
                 <span class="pcoded-mtext">Settings</span>
@@ -252,7 +253,7 @@
         </li>
         @endif
         @if(Auth::user()->role->permission === 'business_admin' || Auth::user()->role->permission === 'staff' || Auth::user()->role->permission === 'user')
-        <li class="">
+        <li class="@yield('cotact_us')">
             <a href="javascript:void(0)" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-view-list"></i><b>N</b></span>
                 <span class="pcoded-mtext">Contact Us</span>
@@ -265,7 +266,7 @@
     
     @if(Auth::user()->role->permission === 'business_admin')
     <ul class="pcoded-item pcoded-left-item">
-        <li class="">
+        <li class="@yield('getting_started_onboard')">
             <a href="{{ route('dashboard.onboarding') }}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-check-box"></i><b>N</b></span>
                 <span class="pcoded-mtext">Getting Started Onboard</span>

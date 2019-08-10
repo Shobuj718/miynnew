@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>MIYN-Dashboard</title>
+    <title>@yield('title') - MIYN-DASHBOARD</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -44,7 +44,30 @@
     <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
 
      <link rel="stylesheet" type="text/css" href="{{ asset('/files/assets/css/jquery.mCustomScrollbar.css') }}">
+     <style type="text/css">
+         #noty-holder{    
+             width: 100%;    
+             top: 0;
+             font-weight: bold;    
+             z-index: 1031; /* Max Z-Index in Fixed Nav Menu is 1030*/
+             text-align: center;
+             position: absolute;
+         }
 
+         .alert{
+             margin-bottom: 2px;
+             border-radius: 0px;
+         }
+
+         #main{
+             min-height:900px;
+         }
+
+         .starter-template {
+           padding: 40px 15px;
+           text-align: center;
+         }
+     </style>
     
     @yield('styles')
 </head>
@@ -290,6 +313,24 @@
     <!-- custom js -->
     <script type="text/javascript" src="{{ asset('/files/assets/pages/dashboard/custom-dashboard.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/files/assets/js/script.js')}}"></script>
+
+    <script type="text/javascript">
+      function createNoty(message, type) {
+          var html = '<div class="alert alert-' + type + ' alert-dismissable page-alert text-center" style="margin:2px 380px;background-color:#ff5252;border-color:#ff5252;color:#fff;">';    
+          html += '<button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>';
+          html += message;
+          html += '</div>';    
+          $(html).hide().prependTo('#noty-holder').slideDown();
+      };
+
+      $(function(){
+          createNoty('Your trial date will expired soon, <a style="font-size:16px;" href="">Upgrade Now</a>.', 'danger');
+          $('.page-alert .close').click(function(e) {
+              e.preventDefault();
+              $(this).closest('.page-alert').slideUp();
+          });
+      });
+    </script>
 
     @yield('scripts')
 </body>

@@ -1,7 +1,6 @@
 @extends('admin.master')
-@section('title','Add Industry')
-@section('active_pcoded_trigger', 'active pcoded-trigger')
-@section('industry_add', 'active')
+@section('title', 'Edit Category')
+@section('edit_category', 'active')
 @section('styles')
 
 @endsection
@@ -12,7 +11,7 @@
         <div class="row align-items-center">
             <div class="col-md-8">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Industry</h5>
+                    <h5 class="m-b-10">Category</h5>
                     <p class="m-b-0">Add/Edit</p>
 
                 </div>
@@ -55,26 +54,44 @@
                        </div>
                     @endif
 
-                    <h5> Add Industry </h5>
+                    <h5> Edit Category </h5>
                 </div>
                 <div class="card-block">
-                    <form id="main" method="post" action="{{ route('industry.store') }}" enctype="multipart/form-data" novalidate>
+                    <form id="main" method="post" action="javascript::void(0)" novalidate>
                         @csrf
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Industry Name</label>
+                            <label class="col-sm-2 col-form-label">Category Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" placeholder="Industry Name" required="">
+                                <input type="text" class="form-control" name="name" id="name" value="{{ $category->name }}" placeholder="Category Name" required="">
+                                <span class="messages"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Start Date</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" id="name" value="{{ $category->start_date }}" placeholder="Category Name" required="">
+                                <span class="messages"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">End Date</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" id="name" value="{{ $category->expired_date }}" placeholder="Category Name" required="">
                                 <span class="messages"></span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Industry Status</label>
+                            <label class="col-sm-2 col-form-label">Category Status</label>
                             <div class="col-sm-10">
                                 <select name="status" id="status" class="form-control">
+                                    @if($category->status == 0)
                                     <option value="0">Pending</option>
                                     <option value="1">Active</option>
-                                   
+                                    @else
+                                    <option value="1">Active</option>
+                                    <option value="0">Pending</option>
+                                    @endif
                                 </select>
                                 <span class="messages"></span>
                             </div>
@@ -83,7 +100,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2"></label>
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary m-b-0">Submit</button>
+                                <button type="submit" class="btn btn-primary m-b-0">Update</button>
                             </div>
                         </div>
                     </form>

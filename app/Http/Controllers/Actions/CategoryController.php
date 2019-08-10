@@ -11,6 +11,18 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+
+    public function index(){
+        $categories = Category::all();
+        return view('admin.pages.category.index', compact('categories'));
+    }
+
+    public function edit($slug){
+        $category = Category::where('slug', $slug)->first();
+        //dd($category);
+        return view('admin.pages.category.edit', compact('category'));
+    }
+
     public function save(Request $request){
         $validation = Validator::make($request->all(), [
             'name' => 'required|string',
@@ -37,13 +49,6 @@ class CategoryController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Category created successfully!'
-        ]);
-    }
-
-    function index(){
-        return response()->json([
-            'status' => 'success',
-            'categories' => Auth::user()->business->categories()->with('services')->get()
         ]);
     }
 
